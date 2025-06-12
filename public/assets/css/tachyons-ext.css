@@ -1,0 +1,732 @@
+/*! Custom Extensions to Tachyons Snippet*/
+
+/* Test style - should make the app ribbon bright yellow */
+.app-container .workspace-ribbon {
+    background-color: yellow !important;
+}
+
+/* File Explorer Tab Heading */
+.workspace-tab-header[aria-label="File explorer"] + .workspace-tab-container .workspace-tab-container-inner {
+    padding-top: 2rem;
+    position: relative;
+}   
+
+.workspace-tab-header[aria-label="File explorer"] + .workspace-tab-container .workspace-tab-container-inner:before {
+    content: "File Explorer" !important;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+
+/* Andy Matuschak mode! */
+.mod-root.workspace-split.mod-vertical {
+  overflow-x: auto;
+}
+
+.mod-root.workspace-split.mod-vertical>div {
+  min-width: 450px;
+  left: 0;
+}
+
+.mod-root.workspace-split.mod-vertical .workspace-leaf.mod-active,
+.mod-root.workspace-split.mod-vertical>div:first-of-type {
+  z-index:1;
+}
+
+/* For Reading/Preview mode */
+.markdown-preview-view h2 {
+  background-color: #f4f4f4; /* Light gray background - change as needed */
+  padding: 0.3rem;
+}
+
+/* For Live Preview mode */
+.HyperMD-header-2, 
+.cm-header-2 {
+  background-color: #f4f4f4 !important;
+  padding: 0.3rem !important;
+}
+
+
+html {
+    /* shows up on overscroll */
+  }
+  
+  .bg-animation {
+    background-image: -o-linear-gradient(45deg, #101010, #002352, #101010, #640206);
+    background-image: linear-gradient(45deg, #fbeaea,#fffce9,#ecf3ff,#ffffeb);
+    background-image: webkit-linear-gradient(45deg, #fbeaea,#fffce9,#ecf3ff,#ffffeb);
+      background-size: 400% 400%;
+    
+      -webkit-animation: gradient 25s ease infinite;
+              animation: gradient 25s ease infinite;
+  }
+  
+  .bg-animation-studio {
+    background-image: -o-linear-gradient(45deg, #101010, #002352, #101010, #640206);
+    background-image: linear-gradient(45deg, #fbeaea,#fffce9,#ecf3ff,#ffffeb);
+    background-image: webkit-linear-gradient(45deg, #fbeaea,#fffce9,#ecf3ff,#ffffeb);
+      background-size: 400% 400%;
+    
+      -webkit-animation: gradient 25s ease infinite;
+              animation: gradient 25s ease infinite;
+  }
+  
+  /* animation keyframes */
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+  
+  /* ===== TYPOGRAPHY ===== */
+  
+  /* Galapagos (a,ab,abc) */
+  
+  @font-face {
+      font-family: "galapagos-a";
+      src: url("../fonts/GalapagosAGrid-Bold.woff") format('woff'),
+           url("../fonts/GalapagosAGrid-Bold.woff2") format('woff2');
+  }
+  
+  @font-face {
+      font-family: "galapagos-ab";
+      src: url("../fonts/GalapagosABGrid-Bold.woff") format('woff'),
+           url("../fonts/GalapagosABGrid-Bold.woff2") format('woff2');
+           font-style: normal;
+  }
+  
+  @font-face {
+      font-family: "galapagos-abc";
+      src: url("../fonts/GalapagosABCGrid-Bold.woff") format('woff'),
+           url("../fonts/GalapagosABCGrid-Bold.woff2") format('woff2');
+  }
+
+  
+  /* Comic Sans */
+  @font-face {
+    font-family: 'Comic Sans MS';
+    src: url('../fonts/ComicSansMS.woff2') format('woff2'),
+        url('../fonts/ComicSansMS.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-comic-sans {
+  font-family: 'Comic Sans MS';
+}
+
+  /* Brush Script */
+@font-face {
+    font-family: 'Brush Script';
+    src: url('../fonts/BrushScriptStd.woff2') format('woff2'),
+        url('../fonts/BrushScriptStd.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+.font-brush-script{
+  font-family: 'Brush Script';
+}
+
+/* Algerian */
+@font-face {
+    font-family: 'Algerian';
+    src: url('../fonts/Algerian.woff2') format('woff2'),
+        url('../fonts/Algerian.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-algerian{
+  font-family: 'Algerian';
+}
+
+/* Lucida Blackletter */
+
+@font-face {
+    font-family: 'Lucida Blackletter';
+    src: url('../fonts/LucidaBlackletter.woff2') format('woff2'),
+        url('../fonts/LucidaBlackletter.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+.font-lucida-blackletter{
+  font-family: 'Lucida Blackletter';
+}
+
+/* Davida */
+@font-face {
+    font-family: 'Davida';
+    src: url('../fonts/DavidaBoldBT-Regular.woff2') format('woff2'),
+        url('../fonts/DavidaBoldBT-Regular.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-davida{
+  font-family: 'Davida';
+}
+
+
+@font-face {
+    font-family: 'Curlz';
+    src: url('../fonts/CurlzMT.woff2') format('woff2'),
+        url('../fonts/CurlzMT.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-curlz {
+  font-family: 'Curlz';
+}
+
+@font-face {
+    font-family: 'Relinquish';
+    src: url('../fonts/Relinquish-Regular.woff2') format('woff2'),
+        url('../fonts/Relinquish-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-relinquish {
+  font-family: 'Relinquish';
+}
+
+@font-face {
+    font-family: 'Hobo Std';
+    src: url('../fonts/HoboStd.woff2') format('woff2'),
+        url('../fonts/HoboStd.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-hobo {
+  font-family: 'Hobo Std';
+}
+
+@font-face {
+    font-family: 'Comic Sans MS';
+    src: url('../fonts/ComicSansMS-Bold.woff2') format('woff2'),
+        url('../fonts/ComicSansMS-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+.comic-sans {
+  font-family: 'Comic Sans MS';
+}
+
+
+  /* other settings */
+  
+  .sans-serif {
+    font-family: helvetica, arial, sans-serif;
+  }
+  
+  .f-heading-main {
+    font-size:3.9vw;
+    opacity:.9;
+  }
+  
+  .logo {
+    font-size: 6vw;
+  }
+  
+  .f-heading-secondary {
+    font-size:2.9vw;
+      opacity:.9;
+  }
+
+  
+  /* small screen 
+  @media only screen and (max-width: 550px) {
+    .f-heading-main {
+      font-size: 6.5vw;
+    }
+    
+    .f-subtext {
+      font-size:5.1vw;
+    }
+  }
+  */
+  
+  /* links */
+  
+  a {
+    @extend .no-underline;
+  }
+  
+  a:hover {
+       @extend .o-100;
+  }
+  
+  .link a:active {
+    @extend .black;
+      @extend .o-100;
+  }
+  
+  a:visited {
+      @extend .o-100;
+  }
+  
+  .f-subtext a:hover {
+      /* this is a link padding bug patch for smaller text */
+     @extend .black;
+      @extend .pb1;
+       border-bottom: .2vw #fff solid;
+  }
+  
+  
+  /* ===== structure ===== */
+  
+  .mw-fluid {
+    max-width: 60vw;
+  }
+  
+  .f1-logo {font-size: 5.4vw}
+  
+  /* smallest screen */
+  @media only screen and (max-width: 45em) {
+    .mw-fluid {
+      max-width: 90vw;
+    }
+    
+    .logo{
+      font-size: 10vw;
+    }
+    
+    .f-heading-main{
+      font-size: 8vw;
+    }
+    
+    br {
+          display: none;
+      }
+  }
+  
+  .serif {font-family: times, "times new roman";}
+  
+  .lh-copy {line-height: 1.4;}
+  
+  .shake:active {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.5s;
+    display:inline-block;
+    @extend .bg-washed-yellow;
+  
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-2px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+/* ===== GEOCITIES-STYLE ANIMATIONS ===== */
+
+/* Blink animation - the classic */
+@keyframes blink-animation {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink-animation 1s step-end infinite;
+  display: inline-block;
+}
+
+/* Rainbow text cycling */
+@keyframes rainbow-animation {
+  0% { color: red; }
+  14% { color: orange; }
+  28% { color: yellow; }
+  42% { color: green; }
+  56% { color: blue; }
+  70% { color: indigo; }
+  85% { color: violet; }
+  100% { color: red; }
+}
+
+.animate-rainbow {
+  animation: rainbow-animation 3s linear infinite;
+  display: inline-block;
+}
+
+/* Marquee-style scrolling */
+@keyframes marquee-animation {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee-animation 10s linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Spinning text */
+@keyframes spin-animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin-animation 3s linear infinite;
+  display: inline-block;
+  transform-origin: center;
+}
+
+/* Glow pulsing text */
+@keyframes glow-animation {
+  0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 0, 0.2); }
+  50% { text-shadow: 0 0 20px yellow, 0 0 30px gold; }
+}
+
+.animate-glow {
+  animation: glow-animation 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Bouncing text */
+@keyframes bounce-animation {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+.animate-bounce {
+  animation: bounce-animation 2s ease infinite;
+  display: inline-block;
+}
+
+/* Typing effect */
+@keyframes typing-animation {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.animate-typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing-animation 3.5s steps(40, end);
+  border-right: .15em solid orange;
+}
+
+/* Zoom in-out */
+@keyframes zoom-animation {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+.animate-zoom {
+  animation: zoom-animation 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Flame text effect */
+@keyframes flame-animation {
+  0%, 100% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff5500, 0 0 15px #ff7700; }
+  50% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff5500, 0 0 30px #ff7700; }
+}
+
+.animate-flame {
+  animation: flame-animation 1s ease-in-out infinite;
+  color: #ff5500;
+  display: inline-block;
+}
+
+/* Glitch effect */
+@keyframes glitch-animation {
+  0% { transform: translate(0); }
+  20% { transform: translate(-5px, 5px); }
+  40% { transform: translate(-5px, -5px); }
+  60% { transform: translate(5px, 5px); }
+  80% { transform: translate(5px, -5px); }
+  100% { transform: translate(0); }
+}
+
+.animate-glitch {
+  animation: glitch-animation 0.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Sparkle effect */
+@keyframes sparkle-animation {
+  0%, 100% { text-shadow: 0 0 5px white, 0 0 10px white; }
+  50% { text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white; }
+}
+
+.animate-sparkle {
+  animation: sparkle-animation 1s ease-in-out infinite;
+  color: #ffffcc;
+  display: inline-block;
+}
+
+/* Hacker/Matrix style falling text */
+@keyframes matrix-animation {
+  0% { color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+  50% { color: #ffffff; text-shadow: 0 0 10px #00ff00; }
+  100% { color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+}
+
+.animate-matrix {
+  animation: matrix-animation 0.8s infinite;
+  font-family: monospace;
+  display: inline-block;
+}
+
+/* Flipping text */
+@keyframes flip-animation {
+  0% { transform: perspective(400px) rotateY(0); }
+  100% { transform: perspective(400px) rotateY(360deg); }
+}
+
+.animate-flip {
+  animation: flip-animation 2s ease-in-out infinite;
+  display: inline-block;
+  transform-style: preserve-3d;
+}
+
+/* Neon sign effect */
+@keyframes neon-animation {
+  0%, 100% { 
+    text-shadow: 
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 15px #fff,
+      0 0 20px #ff00de,
+      0 0 35px #ff00de,
+      0 0 40px #ff00de;
+  }
+  50% { 
+    text-shadow: 
+      0 0 2px #fff,
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 10px #ff00de,
+      0 0 20px #ff00de,
+      0 0 25px #ff00de;
+  }
+}
+
+.animate-neon {
+  animation: neon-animation 1.5s ease-in-out infinite;
+  color: #ffffff;
+  display: inline-block;
+}
+
+/* Under construction animation */
+@keyframes construction-animation {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 0; }
+}
+
+.animate-construction {
+  display: inline-block;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #ff0 0px,
+    #ff0 10px,
+    #000 10px,
+    #000 20px
+  );
+  background-size: 60px 60px;
+  animation: construction-animation 2s linear infinite;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: bold;
+}
+
+/* CD-ROM loading spinner */
+@keyframes cd-spinner-animation {
+  0% { 
+    transform: rotate(0deg); 
+    border-top-color: cyan;
+  }
+  25% {
+    border-top-color: magenta;
+  }
+  50% {
+    border-top-color: yellow;
+    transform: rotate(180deg);
+  }
+  75% {
+    border-top-color: black;
+  }
+  100% { 
+    transform: rotate(360deg);
+    border-top-color: cyan;
+  }
+}
+
+.animate-cd-spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid transparent;
+  border-top-color: cyan;
+  border-radius: 50%;
+  animation: cd-spinner-animation 1s linear infinite;
+  vertical-align: middle;
+  margin: 0 0.2em;
+}
+
+/* Word dancing (each letter bounces) */
+@keyframes letter-dance-animation {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-5px); }
+  75% { transform: translateY(5px); }
+}
+
+.animate-letter-dance > span {
+  display: inline-block;
+  animation: letter-dance-animation 0.3s ease infinite;
+}
+
+.animate-letter-dance > span:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+
+.animate-letter-dance > span:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+.animate-letter-dance > span:nth-child(4n) {
+  animation-delay: 0.3s;
+}
+
+/* Gradient text with moving gradient */
+@keyframes gradient-text-animation {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.animate-gradient-text {
+  background: linear-gradient(
+    90deg, 
+    #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradient-text-animation 3s linear infinite;
+  display: inline-block;
+  background-position: 0% 50%;
+  font-weight: bold;
+}
+
+/* Star wars text crawl */
+@keyframes star-wars-animation {
+  0% { transform: perspective(400px) rotateX(30deg) translateY(100px); opacity: 1; }
+  100% { transform: perspective(400px) rotateX(30deg) translateY(-300px); opacity: 0; }
+}
+
+.animate-star-wars {
+  display: inline-block;
+  animation: star-wars-animation 10s linear;
+  color: #FFE81F;
+  transform-origin: 50% 100%;
+}
+
+/* Dialup modem loading */
+@keyframes dialup-animation {
+  0%, 100% { content: "."; }
+  25% { content: ".."; }
+  50% { content: "..."; }
+  75% { content: "...."; }
+}
+
+.animate-dialup {
+  display: inline-block;
+  position: relative;
+}
+
+.animate-dialup::after {
+  content: ".";
+  position: absolute;
+  animation: dialup-animation 2s step-start infinite;
+}
+
+/* Animation Duration Modifiers */
+/* These classes can be added alongside any animation class to change its speed */
+
+/* Default animation speeds are generally 2-3s. These modifiers change that base speed */
+.anim-fastest {
+  animation-duration: 0.5s !important;
+}
+
+.anim-fast {
+  animation-duration: 1s !important;
+}
+
+.anim-slow {
+  animation-duration: 4s !important;
+}
+
+.anim-slower {
+  animation-duration: 6s !important;
+}
+
+.anim-slowest {
+  animation-duration: 10s !important;
+}
+
+/* Animation Iteration Count Modifiers */
+.anim-once {
+  animation-iteration-count: 1 !important;
+}
+
+.anim-twice {
+  animation-iteration-count: 2 !important;
+}
+
+.anim-thrice {
+  animation-iteration-count: 3 !important;
+}
+
+.anim-infinite {
+  animation-iteration-count: infinite !important;
+}
+
+/* Animation Direction Modifiers */
+.anim-alternate {
+  animation-direction: alternate !important;
+}
+
+.anim-reverse {
+  animation-direction: reverse !important;
+}
