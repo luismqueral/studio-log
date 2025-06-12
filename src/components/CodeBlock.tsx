@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { CopyIcon, CheckIcon } from '@primer/octicons-react'
 
 interface CodeBlockProps {
@@ -38,7 +38,7 @@ export default function CodeBlock({ children, className, inline }: CodeBlockProp
   }
 
   // Custom PreTag to inject the copy button directly inside <pre> (avoid double <pre>)
-  const PreWithCopyButton = ({ children: preChildren, ...preProps }: any) => (
+  const PreWithCopyButton = ({ children: preChildren }: { children: React.ReactNode }) => (
     <React.Fragment>
       <button
         onClick={copyToClipboard}

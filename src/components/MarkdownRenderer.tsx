@@ -18,7 +18,7 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
         components={{
-          code({ node, inline, className, children, ...props }: any) {
+          code({ inline, className, children, ...props }: any) {
             // Preserve whitespace and line breaks
             const childrenString = String(children).replace(/\n$/, '')
             
