@@ -1,15 +1,26 @@
 """
 Studio Log Parser
 Splits long-form studio log files into individual posts by H1 headers
+Only copies assets that are actually referenced in the markdown content
 """
 
 import re
+import os
+import shutil
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Set
 from dataclasses import dataclass
 import markdown
-from config import DATE_FORMATS
+
+# Configuration
+DATE_FORMATS = [
+    '%m-%d-%Y',
+    '%m/%d/%Y', 
+    '%Y-%m-%d',
+    '%B %d, %Y',
+    '%b %d, %Y'
+]
 
 @dataclass
 class Post:
@@ -30,13 +41,17 @@ class Post:
     @property 
     def permalink(self) -> str:
         """Full permalink URL"""
-        from config import BASE_URL
+        BASE_URL = "https://luismqueral.github.io/studio-log"  # Update this to your actual URL
         return f"{BASE_URL.rstrip('/')}/{self.url_path}"
 
 class StudioLogParser:
     """Parses studio log markdown files into individual posts"""
     
-    def __init__(self):
+    def __init__(self, vault_path: Path, output_dir: Path):
+        self.vault_path = Path(vault_path)
+        self.output_dir = Path(output_dir)
+        self.referenced_assets: Set[str] = set()
+        
         self.markdown_processor = markdown.Markdown(
             extensions=[
                 'markdown.extensions.tables',
@@ -48,6 +63,90 @@ class StudioLogParser:
                 'markdown.extensions.md_in_html'
             ]
         )
+    
+    def find_asset_references(self, content: str) -> Set[str]:
+        """Find all asset references in markdown content"""
+        assets = set()
+        
+        # Find markdown image references: ![alt](path)
+        img_pattern = r'!\[.*?\]\(([^)]+)\)'
+        for match in re.finditer(img_pattern, content):
+            asset_path = match.group(1)
+            if not asset_path.startswith(('http://', 'https://')):
+                assets.add(asset_path)
+        
+        # Find HTML img tags: <img src="path">
+        html_img_pattern = r'<img[^>]+src=["\']([^"\']+)["\']'
+        for match in re.finditer(html_img_pattern, content):
+            asset_path = match.group(1)
+            if not asset_path.startswith(('http://', 'https://')):
+                assets.add(asset_path)
+        
+        # Find video references: <video src="path">
+        video_pattern = r'<video[^>]+src=["\']([^"\']+)["\']'
+        for match in re.finditer(video_pattern, content):
+            asset_path = match.group(1)
+            if not asset_path.startswith(('http://', 'https://')):
+                assets.add(asset_path)
+        
+        # Find audio references: <audio src="path">
+        audio_pattern = r'<audio[^>]+src=["\']([^"\']+)["\']'
+        for match in re.finditer(audio_pattern, content):
+            asset_path = match.group(1)
+            if not asset_path.startswith(('http://', 'https://')):
+                assets.add(asset_path)
+        
+        # Find link references to files: [text](file.pdf)
+        link_pattern = r'\[.*?\]\(([^)]+\.(pdf|doc|docx|zip|mp4|mov|avi|mp3|wav))\)'
+        for match in re.finditer(link_pattern, content, re.IGNORECASE):
+            asset_path = match.group(1)
+            if not asset_path.startswith(('http://', 'https://')):
+                assets.add(asset_path)
+        
+        return assets
+    
+    def copy_referenced_assets(self):
+        """Copy only the assets that are referenced in markdown files"""
+        print(f"Copying {len(self.referenced_assets)} referenced assets...")
+        
+        # Create public directory if it doesn't exist
+        public_dir = self.output_dir / "public"
+        public_dir.mkdir(exist_ok=True)
+        
+        copied_count = 0
+        for asset_path in self.referenced_assets:
+            # Clean up the asset path (remove leading ./ or ../)
+            clean_path = asset_path.lstrip('./')
+            
+            # Try to find the asset in the vault
+            source_paths = [
+                self.vault_path / clean_path,
+                self.vault_path / "assets" / clean_path,
+                self.vault_path / "_assets" / clean_path,
+                self.vault_path / Path(clean_path).name,  # Just the filename
+            ]
+            
+            source_file = None
+            for path in source_paths:
+                if path.exists():
+                    source_file = path
+                    break
+            
+            if source_file:
+                # Determine destination path
+                dest_path = public_dir / clean_path
+                dest_path.parent.mkdir(parents=True, exist_ok=True)
+                
+                try:
+                    shutil.copy2(source_file, dest_path)
+                    copied_count += 1
+                    print(f"  ✓ Copied: {clean_path}")
+                except Exception as e:
+                    print(f"  ✗ Failed to copy {clean_path}: {e}")
+            else:
+                print(f"  ✗ Asset not found: {asset_path}")
+        
+        print(f"Successfully copied {copied_count} assets")
     
     def parse_file(self, file_path: Path) -> List[Post]:
         """Parse a studio log file into individual posts"""
@@ -61,6 +160,10 @@ class StudioLogParser:
         """Parse content string into individual posts"""
         posts = []
         
+        # Find all asset references in this content
+        assets = self.find_asset_references(content)
+        self.referenced_assets.update(assets)
+        
         # Split by H1 headers (# at start of line)
         sections = re.split(r'\n(?=# )', content)
         
@@ -72,6 +175,10 @@ class StudioLogParser:
             section = section.strip()
             if not section:
                 continue
+                
+            # Find assets in this section too
+            section_assets = self.find_asset_references(section)
+            self.referenced_assets.update(section_assets)
                 
             post = self._parse_section(section, source_file)
             if post:
@@ -160,4 +267,58 @@ class StudioLogParser:
                 return slug
         
         # Fallback to date if no clean title
-        return f"{date.month}-{date.day}-{date.year}" 
+        return f"{date.month}-{date.day}-{date.year}"
+
+def main():
+    """Main function to run the parser"""
+    # Update these paths to match your setup
+    vault_path = Path("../")  # Path to your Obsidian vault
+    output_dir = Path(".")    # Current directory (studio-log-nextjs)
+    
+    # Find all markdown files in the vault that contain studio logs
+    studio_log_files = []
+    for md_file in vault_path.glob("**/*.md"):
+        if "studio log" in md_file.name.lower() or "log" in md_file.name.lower():
+            studio_log_files.append(md_file)
+    
+    if not studio_log_files:
+        print("No studio log files found!")
+        return
+    
+    parser = StudioLogParser(vault_path, output_dir)
+    all_posts = []
+    
+    # Parse all studio log files
+    for file_path in studio_log_files:
+        print(f"Parsing: {file_path}")
+        try:
+            posts = parser.parse_file(file_path)
+            all_posts.extend(posts)
+            print(f"  Found {len(posts)} posts")
+        except Exception as e:
+            print(f"  Error parsing {file_path}: {e}")
+    
+    # Copy only referenced assets
+    parser.copy_referenced_assets()
+    
+    # Create content directory and save posts
+    content_dir = output_dir / "content"
+    content_dir.mkdir(exist_ok=True)
+    
+    # Save posts as individual markdown files
+    for post in all_posts:
+        post_file = content_dir / f"{post.slug}.md"
+        with open(post_file, 'w', encoding='utf-8') as f:
+            f.write(f"---\n")
+            f.write(f"title: {post.title}\n")
+            f.write(f"date: {post.date.isoformat()}\n")
+            f.write(f"slug: {post.slug}\n")
+            f.write(f"has_title: {post.has_title}\n")
+            f.write(f"---\n\n")
+            f.write(post.content)
+    
+    print(f"\nProcessed {len(all_posts)} posts")
+    print(f"Referenced {len(parser.referenced_assets)} unique assets")
+
+if __name__ == "__main__":
+    main() 
