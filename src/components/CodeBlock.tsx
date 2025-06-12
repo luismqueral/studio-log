@@ -45,15 +45,19 @@ export default function CodeBlock({ children, className, inline }: CodeBlockProp
         {copied ? '✓ Copied!' : 'Copy'}
       </button>
       
-      <SyntaxHighlighter
+              <SyntaxHighlighter
         language={language}
         style={oneDark}
         customStyle={{
           margin: 0,
           borderRadius: '0.25rem',
           fontSize: '0.875rem',
-          lineHeight: '1.5'
+          lineHeight: '1.5',
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-word'
         }}
+        wrapLines={true}
+        showLineNumbers={false}
         codeTagProps={{
           style: {
             fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace'

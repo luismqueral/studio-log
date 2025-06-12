@@ -19,6 +19,7 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
         rehypePlugins={[rehypeRaw]}
         components={{
           code({ node, inline, className, children, ...props }: any) {
+            // Preserve whitespace and line breaks
             const childrenString = String(children).replace(/\n$/, '')
             
             return (

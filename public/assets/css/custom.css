@@ -2,6 +2,8 @@
 .code-block-container {
   position: relative;
   margin-bottom: 1rem;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .code-block-copy-button {
@@ -25,6 +27,20 @@
 
 .code-block-copy-button:active {
   background: rgba(0, 0, 0, 1);
+}
+
+/* Code block styles */
+pre {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100%;
+}
+
+/* Make sure code inside pre tags wraps properly */
+pre code {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
 }
 
 /* Inline code styles */
