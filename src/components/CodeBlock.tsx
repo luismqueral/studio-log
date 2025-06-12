@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { CopyIcon, CheckIcon } from '@primer/octicons-react'
 
 interface CodeBlockProps {
   children: string
@@ -36,36 +37,47 @@ export default function CodeBlock({ children, className, inline }: CodeBlockProp
     }
   }
 
-  return (
-    <div className="code-block-container">
+  // Custom PreTag to inject the copy button directly inside <pre> (avoid double <pre>)
+  const PreWithCopyButton = ({ children: preChildren, ...preProps }: any) => (
+    <React.Fragment>
       <button
         onClick={copyToClipboard}
-        className="code-block-copy-button"
+        className="copy-button"
+        aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
+        title={copied ? 'Copied!' : 'Copy to clipboard'}
       >
-        {copied ? '✓ Copied!' : 'Copy'}
+        {copied ? (
+          <CheckIcon size={12} fill="#116329" />
+        ) : (
+          <CopyIcon size={12} fill="#57606a" />
+        )}
       </button>
-      
-              <SyntaxHighlighter
-        language={language}
-        style={oneDark}
-        customStyle={{
-          margin: 0,
-          borderRadius: '0.25rem',
-          fontSize: '0.875rem',
-          lineHeight: '1.5',
-          whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word'
-        }}
-        wrapLines={true}
-        showLineNumbers={false}
-        codeTagProps={{
-          style: {
-            fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace'
-          }
-        }}
-      >
-        {children}
-      </SyntaxHighlighter>
-    </div>
+      {preChildren}
+    </React.Fragment>
+  )
+
+  return (
+    <SyntaxHighlighter
+      language={language}
+      style={oneDark}
+      customStyle={{
+        margin: 0,
+        borderRadius: '0.25rem',
+        fontSize: '0.875rem',
+        lineHeight: '1.5',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word'
+      }}
+      wrapLines={true}
+      showLineNumbers={false}
+      codeTagProps={{
+        style: {
+          fontFamily: 'Monaco, Menlo, "Ubuntu Mono", monospace'
+        }
+      }}
+      PreTag={PreWithCopyButton}
+    >
+      {children}
+    </SyntaxHighlighter>
   )
 } 

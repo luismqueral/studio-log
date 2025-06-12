@@ -31,16 +31,32 @@
 
 /* Code block styles */
 pre {
+  position: relative;
+  background-color: #f6f8fa !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 6px !important;
+  padding: 16px !important;
+  margin: 16px 0 !important;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
   white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  max-width: 100%;
+  word-break: break-word !important;
+  box-shadow: none !important;
 }
 
 /* Make sure code inside pre tags wraps properly */
 pre code {
+  color: #24292f !important;
+  background: none !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
   white-space: pre-wrap !important;
   word-break: break-word !important;
+  text-shadow: none !important;
 }
 
 /* Inline code styles */
@@ -109,4 +125,130 @@ blockquote {
   .content-figure figcaption {
     color: #999;
   }
+}
+
+/* Copy Button Styling */
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #24292f;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.copy-button:hover {
+  background-color: #f3f4f6;
+  border-color: #d0d7de;
+}
+
+pre:hover .copy-button {
+  opacity: 1;
+}
+
+/* Syntax Highlighting - GitHub Light Theme */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6e7781;
+}
+
+.token.punctuation {
+  color: #24292f;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+  color: #0550ae;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin {
+  color: #116329;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #116329;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #cf222e;
+}
+
+.token.function {
+  color: #8250df;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #116329;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* Language Label */
+.language-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 2px 6px;
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #57606a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Adjust padding when language label is present */
+pre[data-language] {
+  padding-top: 40px !important;
+}
+
+/* Success Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.copy-success {
+  animation: fadeIn 0.2s ease-in-out;
+  color: #116329 !important;
+  background-color: #f6f8fa !important;
+  border-color: #d0d7de !important;
 }

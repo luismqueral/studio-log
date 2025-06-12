@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@primer/octicons-react": "^19.15.2",
     "@types/react-syntax-highlighter": "^15.5.13",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
