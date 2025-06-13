@@ -8,11 +8,17 @@
     "start": "next start",
     "lint": "next lint",
     "compress-videos": "node scripts/compress-videos.js",
-    "compress-videos:force": "rm -f .video-compression-cache.json && node scripts/compress-videos.js"
+    "compress-videos:force": "rm -f .video-compression-cache.json && node scripts/compress-videos.js",
+    "test-blob": "source venv/bin/activate && python test_blob.py",
+    "upload-assets": "source venv/bin/activate && python blob_parser_with_compression.py",
+    "upload-assets-basic": "source venv/bin/activate && python blob_parser.py",
+    "deploy": "npm run upload-assets && npm run build && vercel --prod",
+    "deploy:preview": "npm run upload-assets && npm run build && vercel"
   },
   "dependencies": {
     "@primer/octicons-react": "^19.15.2",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@vercel/blob": "^1.1.1",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "15.3.3",

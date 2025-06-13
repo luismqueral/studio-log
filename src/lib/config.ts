@@ -3,6 +3,6 @@ export const siteConfig = {
   baseUrl: 'http://localhost:3000',
   indexPostsLimit: 10,
   dateFormats: ['M-d-yyyy', 'M/d/yyyy', 'yyyy-M-d'],
-  contentDir: '../journals/studio log',
+  contentDir: 'content',
   contentFile: 'studio log — 2025.md'
 }

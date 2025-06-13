@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import './globals.css'
 import { siteConfig } from '../lib/config'
 
@@ -22,9 +23,9 @@ export default function RootLayout({
         <div className="mw7 center pa4">
           <header className="mb5">
             <h1 className="f2 ma0">
-              <a href="/" className="link black hover-blue">
+              <Link href="/" className="link black hover-blue">
                 {siteConfig.siteName}
-              </a>
+              </Link>
             </h1>
             <p className="f5 gray mt2 mb0">
               Notes on software making, generative art, assorted projects, and the things that inspire me.

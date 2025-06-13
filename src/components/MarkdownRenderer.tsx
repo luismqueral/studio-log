@@ -18,19 +18,21 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
         components={{
-          code({ inline, className, children, ...props }: any) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          code(props: any) {
+            const { inline, className, children, ...rest } = props
             // Preserve whitespace and line breaks
             const childrenString = String(children).replace(/\n$/, '')
             
-            return (
-              <CodeBlock
-                className={className}
-                inline={inline}
-                {...props}
-              >
-                {childrenString}
-              </CodeBlock>
-            )
+                          return (
+                <CodeBlock
+                  className={className}
+                  inline={inline}
+                  {...rest}
+                >
+                  {childrenString}
+                </CodeBlock>
+              )
           },
           // You can customize other elements here too
           h1: ({ children }) => (

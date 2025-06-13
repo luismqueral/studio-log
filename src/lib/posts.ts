@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs'
 import { Post } from '@/types/post'
 import { StudioLogParser } from './parser'
 import { siteConfig } from './config'
@@ -11,10 +12,21 @@ export async function getAllPosts(): Promise<Post[]> {
   }
 
   const parser = new StudioLogParser()
-  const filePath = path.join(process.cwd(), siteConfig.contentDir, siteConfig.contentFile)
+  const contentDir = path.join(process.cwd(), siteConfig.contentDir)
   
   try {
-    cachedPosts = await parser.parseFile(filePath)
+    // Read all markdown files from the content directory
+    const files = fs.readdirSync(contentDir).filter(file => file.endsWith('.md'))
+    const allPosts: Post[] = []
+    
+    for (const file of files) {
+      const filePath = path.join(contentDir, file)
+      const posts = await parser.parseFile(filePath)
+      allPosts.push(...posts)
+    }
+    
+    // Sort posts by date (newest first)
+    cachedPosts = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     return cachedPosts
   } catch (error) {
     console.error('Error loading posts:', error)

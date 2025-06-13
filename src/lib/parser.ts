@@ -24,7 +24,66 @@ export class StudioLogParser {
     }
     
     const content = fs.readFileSync(filePath, 'utf-8')
+    
+    // Check if this is a single file with frontmatter
+    if (content.trim().startsWith('---')) {
+      return this.parseFrontmatterFile(content, filePath)
+    }
+    
+    // Otherwise parse as multi-post content
     return this.parseContent(content, filePath)
+  }
+
+  async parseFrontmatterFile(content: string, sourceFile: string): Promise<Post[]> {
+    const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+    if (!frontmatterMatch) {
+      console.warn(`Warning: Could not parse frontmatter in ${sourceFile}`)
+      return []
+    }
+
+    const [, frontmatterText, bodyContent] = frontmatterMatch
+    
+    // Parse frontmatter
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const frontmatter: any = {}
+    frontmatterText.split('\n').forEach(line => {
+      const [key, ...valueParts] = line.split(':')
+      if (key && valueParts.length > 0) {
+        const value = valueParts.join(':').trim()
+        frontmatter[key.trim()] = value
+      }
+    })
+
+    // Parse date
+    let date: Date
+    if (frontmatter.date) {
+      date = new Date(frontmatter.date)
+    } else {
+      // Try to parse from title
+      const { date: parsedDate } = this.parseTitleAndDate(frontmatter.title || '')
+      date = parsedDate || new Date()
+    }
+
+    // Process content
+    let processedContent = bodyContent.trim()
+    processedContent = this.processImagePaths(processedContent, path.dirname(sourceFile))
+    
+    // Convert to HTML
+    const htmlContent = await this.processor.process(processedContent)
+
+    const post: Post = {
+      title: frontmatter.title || 'Untitled',
+      slug: frontmatter.slug || this.generateSlug(frontmatter.title || '', date),
+      date,
+      content: processedContent,
+      htmlContent: String(htmlContent),
+      sourceFile,
+      hasTitle: frontmatter.has_title !== 'False',
+      urlPath: `${frontmatter.slug || this.generateSlug(frontmatter.title || '', date)}/`,
+      permalink: `${siteConfig.baseUrl.replace(/\/$/, '')}/${frontmatter.slug || this.generateSlug(frontmatter.title || '', date)}/`
+    }
+
+    return [post]
   }
 
   async parseContent(content: string, sourceFile: string): Promise<Post[]> {
@@ -112,7 +171,7 @@ export class StudioLogParser {
       try {
         date = parse(datePart, dateFormat, new Date())
         break
-      } catch (error) {
+      } catch {
         continue
       }
     }

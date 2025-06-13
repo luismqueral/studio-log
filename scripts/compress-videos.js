@@ -87,7 +87,15 @@ function compressVideo(inputPath) {
     console.log(`✅ Compressed successfully!`);
     console.log(`   Original: ${(originalSize / 1024 / 1024).toFixed(1)}MB`);
     console.log(`   Compressed: ${(compressedSize / 1024 / 1024).toFixed(1)}MB`);
-    console.log(`   Savings: ${savings}%\n`);
+    console.log(`   Savings: ${savings}%`);
+    
+    // Delete the original file to save space
+    try {
+      fs.unlinkSync(inputPath);
+      console.log(`   🗑️  Deleted original file: ${path.basename(inputPath)}\n`);
+    } catch (deleteError) {
+      console.warn(`   ⚠️  Could not delete original file: ${deleteError.message}\n`);
+    }
     
     return outputPath;
   } catch (error) {
