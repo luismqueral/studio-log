@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="/assets/css/tachyons.min.css" />
+        <link rel="stylesheet" href="/assets/css/tachyons-base.css" />
         <link rel="stylesheet" href="/assets/css/custom.css" />
       </head>
       <body className="sans-serif">
