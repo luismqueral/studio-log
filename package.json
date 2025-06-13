@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm run compress-videos && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "compress-videos": "node scripts/compress-videos.js",
+    "compress-videos:force": "rm -f .video-compression-cache.json && node scripts/compress-videos.js"
   },
   "dependencies": {
     "@primer/octicons-react": "^19.15.2",
