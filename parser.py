@@ -196,52 +196,33 @@ class IncrementalStudioLogParser:
         
         return assets
     
+    def cleanup_local_assets(self):
+        """Remove locally copied assets since we're using Vercel Blob"""
+        public_assets_dir = self.output_dir / "public" / "_assets"
+        if public_assets_dir.exists():
+            try:
+                shutil.rmtree(public_assets_dir)
+                print("🧹 Cleaned up local assets directory (using Vercel Blob instead)")
+            except Exception as e:
+                print(f"⚠️  Could not clean up local assets: {e}")
+
     def copy_referenced_assets(self):
-        """Copy only the assets that are referenced in markdown files"""
+        """Track referenced assets for Vercel Blob upload (skip local copying)"""
         if not self.referenced_assets:
-            print("📋 No assets to copy")
+            print("📋 No assets referenced")
             return
             
-        print(f"📂 Copying {len(self.referenced_assets)} referenced assets...")
+        print(f"📎 Tracked {len(self.referenced_assets)} referenced assets for Vercel Blob upload")
         
-        # Create public directory if it doesn't exist
-        public_dir = self.output_dir / "public"
-        public_dir.mkdir(exist_ok=True)
-        
-        copied_count = 0
+        # Log the assets that will be uploaded by the blob parser
         for asset_path in self.referenced_assets:
-            # Clean up the asset path (remove leading ./ or ../)
             clean_path = asset_path.lstrip('./')
-            
-            # Try to find the asset in the vault
-            source_paths = [
-                self.vault_path / clean_path,
-                self.vault_path / "assets" / clean_path,
-                self.vault_path / "_assets" / clean_path,
-                self.vault_path / Path(clean_path).name,  # Just the filename
-            ]
-            
-            source_file = None
-            for path in source_paths:
-                if path.exists():
-                    source_file = path
-                    break
-            
-            if source_file:
-                # Determine destination path
-                dest_path = public_dir / clean_path
-                dest_path.parent.mkdir(parents=True, exist_ok=True)
-                
-                try:
-                    shutil.copy2(source_file, dest_path)
-                    copied_count += 1
-                    print(f"  ✅ Copied: {clean_path}")
-                except Exception as e:
-                    print(f"  ❌ Failed to copy {clean_path}: {e}")
-            else:
-                print(f"  ⚠️  Asset not found: {asset_path}")
+            print(f"  📎 {clean_path}")
         
-        print(f"📊 Successfully copied {copied_count} assets")
+        print("📋 Assets will be uploaded to Vercel Blob and URLs updated in markdown")
+        
+        # Clean up any existing local assets
+        self.cleanup_local_assets()
     
     def parse_file(self, file_path: Path) -> List[Post]:
         """Parse a studio log file into individual posts"""
@@ -437,7 +418,7 @@ def main(force_full_parse: bool = False):
             for post_file in content_dir.glob("*.md"):
                 parser.current_run_posts.add(post_file.stem)
     
-    # Copy only referenced assets
+    # Track referenced assets for Vercel Blob upload
     parser.copy_referenced_assets()
     
     # Create content directory and save posts

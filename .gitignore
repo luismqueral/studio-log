@@ -31,8 +31,12 @@ blob_cache.json
 
 # Video compression
 .video-compression-cache.json
-# Exclude large original videos (keep compressed versions)
-public/assets/videos/media_1748403290947.mp4
+
+# Large assets (using Vercel Blob instead)
+public/_assets/
+public/assets/videos/
+public/assets/images/
+# Keep only CSS and small assets in public/assets/
 
 # Obsidian
 .obsidian/workspace.json
