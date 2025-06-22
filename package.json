@@ -7,13 +7,19 @@
     "build": "npm run compress-videos && next build",
     "start": "next start",
     "lint": "next lint",
+    "parse": "python parser.py",
+    "parse:force": "python parser.py --force",
+    "parse:clean": "rm -f .last_parse_run.json && python parser.py --force",
+    "commit": "node scripts/smart-commit.js",
     "compress-videos": "node scripts/compress-videos.js",
     "compress-videos:force": "rm -f .video-compression-cache.json && node scripts/compress-videos.js",
     "test-blob": "source venv/bin/activate && python test_blob.py",
     "upload-assets": "source venv/bin/activate && python blob_parser_with_compression.py",
     "upload-assets-basic": "source venv/bin/activate && python blob_parser.py",
-    "deploy": "npm run upload-assets && npm run build && vercel --prod",
-    "deploy:preview": "npm run upload-assets && npm run build && vercel"
+    "deploy": "npm run parse && npm run upload-assets && npm run commit && npm run build && vercel --prod",
+    "deploy:preview": "npm run parse && npm run upload-assets && npm run commit && npm run build && vercel",
+    "publish": "npm run deploy",
+    "dev:full": "npm run parse && npm run dev"
   },
   "dependencies": {
     "@primer/octicons-react": "^19.15.2",

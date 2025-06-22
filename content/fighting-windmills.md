@@ -12,7 +12,7 @@ I've used Notion for close to 8 years now and dumped a *lot* of thoughts into th
 I've finally settled on a solution that I'm somewhat happy with and seems to be helping (evidenced by the amount through which I am actually writing).
 
 <figure>
-  <img src="https://mp1ewwuojwmnpxpy.public.blob.vercel-storage.com/image_1750439125895-gQp8r1LWWDoguEHs5OmX1fHqLbPG4V.webp" width="auto">
+  <img src="_assets/image_1750439125895.png" width="auto">
   <figcaption></figcaption>
 </figure>
 At some point I'll try and capture my Obsidian setup in more detail, along with my thoughts on over-complicating systems, but this seems to really be working and sticking for me personally at least.

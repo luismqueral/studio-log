@@ -1,12 +1,14 @@
 """
-Studio Log Parser
+Studio Log Parser with Incremental Processing
 Splits long-form studio log files into individual posts by H1 headers
 Only copies assets that are actually referenced in the markdown content
+Includes incremental processing and cleanup of deleted posts
 """
 
 import re
 import os
 import shutil
+import json
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple, Set
@@ -44,13 +46,16 @@ class Post:
         BASE_URL = "https://luismqueral.github.io/studio-log"  # Update this to your actual URL
         return f"{BASE_URL.rstrip('/')}/{self.url_path}"
 
-class StudioLogParser:
-    """Parses studio log markdown files into individual posts"""
+class IncrementalStudioLogParser:
+    """Parses studio log markdown files into individual posts with incremental processing"""
     
-    def __init__(self, vault_path: Path, output_dir: Path):
+    def __init__(self, vault_path: Path, output_dir: Path, force_full_parse: bool = False):
         self.vault_path = Path(vault_path)
         self.output_dir = Path(output_dir)
         self.referenced_assets: Set[str] = set()
+        self.force_full_parse = force_full_parse
+        self.last_run_file = self.output_dir / ".last_parse_run.json"
+        self.current_run_posts: Set[str] = set()  # Track posts generated in this run
         
         self.markdown_processor = markdown.Markdown(
             extensions=[
@@ -63,6 +68,92 @@ class StudioLogParser:
                 'markdown.extensions.md_in_html'
             ]
         )
+    
+    def load_last_run_info(self) -> Dict:
+        """Load information about the last parser run"""
+        if not self.last_run_file.exists():
+            return {"last_run_time": 0, "processed_files": {}}
+        
+        try:
+            with open(self.last_run_file, 'r') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError):
+            print("Warning: Could not read last run file, performing full parse")
+            return {"last_run_time": 0, "processed_files": {}}
+    
+    def save_last_run_info(self, processed_files: Dict[str, float]):
+        """Save information about this parser run"""
+        run_info = {
+            "last_run_time": datetime.now().timestamp(),
+            "processed_files": processed_files,
+            "generated_posts": list(self.current_run_posts)
+        }
+        
+        with open(self.last_run_file, 'w') as f:
+            json.dump(run_info, f, indent=2)
+    
+    def get_changed_files(self, studio_log_files: List[Path]) -> Tuple[List[Path], Dict[str, float]]:
+        """Get list of files that have changed since last run"""
+        if self.force_full_parse:
+            print("🔄 Force full parse requested")
+            return studio_log_files, {}
+        
+        last_run_info = self.load_last_run_info()
+        last_run_time = last_run_info.get("last_run_time", 0)
+        processed_files = last_run_info.get("processed_files", {})
+        
+        if last_run_time == 0:
+            print("📁 No previous run found, performing full parse")
+            return studio_log_files, {}
+        
+        changed_files = []
+        current_file_times = {}
+        
+        for file_path in studio_log_files:
+            file_key = str(file_path)
+            file_mtime = file_path.stat().st_mtime
+            current_file_times[file_key] = file_mtime
+            
+            # Check if file is new or modified
+            if (file_key not in processed_files or 
+                file_mtime > processed_files[file_key]):
+                changed_files.append(file_path)
+                print(f"📝 Changed: {file_path.name}")
+            else:
+                print(f"📋 Unchanged: {file_path.name}")
+        
+        if not changed_files:
+            print("✅ No files have changed since last run")
+        else:
+            print(f"🔄 Found {len(changed_files)} changed files out of {len(studio_log_files)} total")
+        
+        return changed_files, current_file_times
+    
+    def cleanup_stale_posts(self):
+        """Remove posts that are no longer referenced in source files"""
+        content_dir = self.output_dir / "content"
+        if not content_dir.exists():
+            return
+        
+        # Get all existing post files
+        existing_posts = set()
+        for post_file in content_dir.glob("*.md"):
+            existing_posts.add(post_file.stem)  # filename without extension
+        
+        # Find posts that were not generated in this run
+        stale_posts = existing_posts - self.current_run_posts
+        
+        if stale_posts:
+            print(f"🧹 Cleaning up {len(stale_posts)} stale posts:")
+            for stale_post in stale_posts:
+                stale_file = content_dir / f"{stale_post}.md"
+                try:
+                    stale_file.unlink()
+                    print(f"  🗑️  Removed: {stale_post}.md")
+                except Exception as e:
+                    print(f"  ❌ Failed to remove {stale_post}.md: {e}")
+        else:
+            print("✅ No stale posts to clean up")
     
     def find_asset_references(self, content: str) -> Set[str]:
         """Find all asset references in markdown content"""
@@ -107,7 +198,11 @@ class StudioLogParser:
     
     def copy_referenced_assets(self):
         """Copy only the assets that are referenced in markdown files"""
-        print(f"Copying {len(self.referenced_assets)} referenced assets...")
+        if not self.referenced_assets:
+            print("📋 No assets to copy")
+            return
+            
+        print(f"📂 Copying {len(self.referenced_assets)} referenced assets...")
         
         # Create public directory if it doesn't exist
         public_dir = self.output_dir / "public"
@@ -140,13 +235,13 @@ class StudioLogParser:
                 try:
                     shutil.copy2(source_file, dest_path)
                     copied_count += 1
-                    print(f"  ✓ Copied: {clean_path}")
+                    print(f"  ✅ Copied: {clean_path}")
                 except Exception as e:
-                    print(f"  ✗ Failed to copy {clean_path}: {e}")
+                    print(f"  ❌ Failed to copy {clean_path}: {e}")
             else:
-                print(f"  ✗ Asset not found: {asset_path}")
+                print(f"  ⚠️  Asset not found: {asset_path}")
         
-        print(f"Successfully copied {copied_count} assets")
+        print(f"📊 Successfully copied {copied_count} assets")
     
     def parse_file(self, file_path: Path) -> List[Post]:
         """Parse a studio log file into individual posts"""
@@ -183,6 +278,8 @@ class StudioLogParser:
             post = self._parse_section(section, source_file)
             if post:
                 posts.append(post)
+                # Track this post as generated in current run
+                self.current_run_posts.add(post.slug)
         
         # Sort posts by date (newest first)
         posts.sort(key=lambda p: p.date, reverse=True)
@@ -205,7 +302,7 @@ class StudioLogParser:
         # Parse date and title
         date_obj, clean_title = self._parse_title_and_date(raw_title)
         if not date_obj:
-            print(f"Warning: Could not parse date from '{raw_title}' in {source_file}")
+            print(f"⚠️  Warning: Could not parse date from '{raw_title}' in {source_file}")
             return None
         
         # Determine display title and whether it has a real title
@@ -269,34 +366,76 @@ class StudioLogParser:
         # Fallback to date if no clean title
         return f"{date.month}-{date.day}-{date.year}"
 
-def main():
-    """Main function to run the parser"""
+def main(force_full_parse: bool = False):
+    """Main function to run the parser with incremental processing"""
+    print("🚀 Starting Studio Log Parser with Incremental Processing")
+    
     # Update these paths to match your setup
     vault_path = Path("../")  # Path to your Obsidian vault
     output_dir = Path(".")    # Current directory (studio-log-nextjs)
     
-    # Find all markdown files in the vault that contain studio logs
+    # Find studio log files using two approaches:
+    # 1. Files in journals/studio log/ directory (preferred)
+    # 2. Files with "studio log" (not just "log") in the filename
+    
+    exclude_dirs = {'node_modules', '.git', '.next', 'venv', '__pycache__', 'content', 'public'}
+    
     studio_log_files = []
-    for md_file in vault_path.glob("**/*.md"):
-        if "studio log" in md_file.name.lower() or "log" in md_file.name.lower():
+    
+    # Approach 1: Look in dedicated studio log directory
+    studio_log_dir = vault_path / "journals" / "studio log"
+    if studio_log_dir.exists():
+        for md_file in studio_log_dir.glob("*.md"):
             studio_log_files.append(md_file)
+            print(f"📁 Found studio log: {md_file.relative_to(vault_path)}")
+    
+    # Approach 2: Look for files with "studio log" in filename (not just "log")  
+    for md_file in vault_path.glob("**/*.md"):
+        # Skip files in excluded directories (including generated content)
+        if any(part in exclude_dirs for part in md_file.parts):
+            continue
+        # Only include files with "studio log" specifically in the name
+        if "studio log" in md_file.name.lower():
+            # Avoid duplicates from approach 1
+            if md_file not in studio_log_files:
+                studio_log_files.append(md_file)
+                print(f"📝 Found studio log: {md_file.relative_to(vault_path)}")
     
     if not studio_log_files:
-        print("No studio log files found!")
+        print("❌ No studio log files found!")
         return
     
-    parser = StudioLogParser(vault_path, output_dir)
+    print(f"📁 Found {len(studio_log_files)} studio log files")
+    
+    parser = IncrementalStudioLogParser(vault_path, output_dir, force_full_parse)
+    
+    # Get files that have changed since last run
+    changed_files, current_file_times = parser.get_changed_files(studio_log_files)
+    
+    if not changed_files and not force_full_parse:
+        print("✅ No changes detected. Use --force to force full parse.")
+        return
+    
     all_posts = []
     
-    # Parse all studio log files
-    for file_path in studio_log_files:
-        print(f"Parsing: {file_path}")
+    # Parse changed files
+    for file_path in changed_files:
+        print(f"📝 Parsing: {file_path.name}")
         try:
             posts = parser.parse_file(file_path)
             all_posts.extend(posts)
-            print(f"  Found {len(posts)} posts")
+            print(f"  ✅ Found {len(posts)} posts")
         except Exception as e:
-            print(f"  Error parsing {file_path}: {e}")
+            print(f"  ❌ Error parsing {file_path}: {e}")
+    
+    # If we're not doing a full parse, we need to load existing posts from unchanged files
+    # to maintain the complete set for navigation and cleanup
+    if not force_full_parse and len(changed_files) < len(studio_log_files):
+        print("📋 Loading existing posts from unchanged files for complete index...")
+        content_dir = output_dir / "content"
+        if content_dir.exists():
+            for post_file in content_dir.glob("*.md"):
+                parser.current_run_posts.add(post_file.stem)
     
     # Copy only referenced assets
     parser.copy_referenced_assets()
@@ -317,8 +456,20 @@ def main():
             f.write(f"---\n\n")
             f.write(post.content)
     
-    print(f"\nProcessed {len(all_posts)} posts")
-    print(f"Referenced {len(parser.referenced_assets)} unique assets")
+    # Clean up stale posts (only if we processed some files)
+    if changed_files:
+        parser.cleanup_stale_posts()
+    
+    # Save run information
+    parser.save_last_run_info(current_file_times)
+    
+    print(f"\n🎉 Processing complete!")
+    print(f"   📝 Processed {len(changed_files)} changed files")
+    print(f"   📄 Generated {len(all_posts)} posts")
+    print(f"   📎 Referenced {len(parser.referenced_assets)} unique assets")
+    print(f"   🗂️  Tracked {len(parser.current_run_posts)} total posts")
 
 if __name__ == "__main__":
-    main() 
+    import sys
+    force_full = "--force" in sys.argv or "-f" in sys.argv
+    main(force_full_parse=force_full) 
