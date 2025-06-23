@@ -12,8 +12,8 @@ export default function Tags({ tags, className = '' }: TagsProps) {
 
   return (
     <div className={`tags ${className}`}>
-      <div className="f6 gray mb3">Tagged:</div>
-      <div className="tag-list">
+      <div className="flex items-center flex-wrap">
+        <span className="f6 gray mr3">Tags:</span>
         {tags.map((tag) => (
           <Link 
             key={tag}

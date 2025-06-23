@@ -1,5 +1,6 @@
 import { Post } from '@/types/post'
 import MarkdownRenderer from './MarkdownRenderer'
+import Tags from './Tags'
 
 interface PostListProps {
   posts: Post[]
@@ -37,6 +38,8 @@ export default function PostList({ posts }: PostListProps) {
           <div className="lh-copy">
             <MarkdownRenderer content={post.content} />
           </div>
+
+          <Tags tags={post.tags} className="mt3" />
           
           {index < posts.length - 1 && (
             <hr className="post-separator bb b--light-gray mv4" />

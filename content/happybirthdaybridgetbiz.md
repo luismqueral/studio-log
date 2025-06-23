@@ -6,13 +6,13 @@ has_title: True
 ---
 
 <figure class="content-figure w-100">
-  <video src="_assets/media_1748403290947.mp4" class="w-100" width="auto" controls></video>
-  <figcaption class="f6 gray tl"></figcaption>
+<video src="_assets/media_1748403290947.mp4" class="w-100" width="auto" controls></video>
+<figcaption class="f6 gray tl"></figcaption>
 </figure>
 
 
 **Next year….**
 <figure class="content-figure">
-  <img src="_assets/image_1748033708790.png" width="auto" class="ba b--light-gray bw2 br2">
-  <figcaption class="f6 gray tl"></figcaption>
+<img src="_assets/image_1748033708790.png" width="auto" class="ba b--light-gray bw2 br2">
+<figcaption class="f6 gray tl"></figcaption>
 </figure>

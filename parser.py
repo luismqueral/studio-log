@@ -219,6 +219,33 @@ class IncrementalStudioLogParser:
         
         return hashtags
     
+    def remove_hashtags_from_content(self, content: str) -> str:
+        """Remove hashtags from content after they've been extracted"""
+        # Pattern to match hashtags: #word
+        # Exclude markdown headers (# at start of line followed by space)
+        hashtag_pattern = r'(?<!^#\s)(?<!\s#\s)#[a-zA-Z][a-zA-Z0-9_-]*'
+        
+        lines = content.split('\n')
+        cleaned_lines = []
+        
+        for line in lines:
+            # Skip cleaning lines that are markdown headers
+            if line.strip().startswith('# '):
+                cleaned_lines.append(line)
+                continue
+            
+            # Remove hashtags from this line
+            cleaned_line = re.sub(hashtag_pattern, '', line)
+            
+            # Clean up any extra whitespace left behind
+            cleaned_line = re.sub(r'\s+', ' ', cleaned_line).strip()
+            
+            # Only add non-empty lines or lines that had other content
+            if cleaned_line or line.strip() == '':
+                cleaned_lines.append(cleaned_line)
+        
+        return '\n'.join(cleaned_lines)
+    
     def cleanup_local_assets(self):
         """Remove locally copied assets since we're using Vercel Blob"""
         public_assets_dir = self.output_dir / "public" / "_assets"
@@ -282,8 +309,9 @@ class IncrementalStudioLogParser:
             post = self._parse_section(section, source_file)
             if post:
                 posts.append(post)
-                # Track this post as generated in current run
-                self.current_run_posts.add(post.slug)
+                # Track this post as generated in current run (only if not draft)
+                if 'draft' not in post.tags:
+                    self.current_run_posts.add(post.slug)
         
         # Sort posts by date (newest first)
         posts.sort(key=lambda p: p.date, reverse=True)
@@ -324,14 +352,17 @@ class IncrementalStudioLogParser:
         # Extract hashtags from content
         tags = self.extract_hashtags(content)
         
+        # Remove hashtags from content after extraction
+        cleaned_content = self.remove_hashtags_from_content(content)
+        
         # Convert to HTML
-        html_content = self.markdown_processor.reset().convert(content)
+        html_content = self.markdown_processor.reset().convert(cleaned_content)
         
         return Post(
             title=display_title,
             slug=slug,
             date=date_obj,
-            content=content,
+            content=cleaned_content,
             html_content=html_content,
             source_file=source_file,
             has_title=has_title,
@@ -448,12 +479,21 @@ def main(force_full_parse: bool = False):
     # Track referenced assets for Vercel Blob upload
     parser.copy_referenced_assets()
     
+    # Filter out draft posts (posts with 'draft' tag)
+    publishable_posts = [post for post in all_posts if 'draft' not in post.tags]
+    draft_posts = [post for post in all_posts if 'draft' in post.tags]
+    
     # Create content directory and save posts
     content_dir = output_dir / "content"
     content_dir.mkdir(exist_ok=True)
     
-    # Save posts as individual markdown files
-    for post in all_posts:
+    if draft_posts:
+        print(f"📝 Skipping {len(draft_posts)} draft posts (not publishing):")
+        for draft_post in draft_posts:
+            print(f"  📋 {draft_post.title} (tags: {', '.join(draft_post.tags)})")
+    
+    # Save publishable posts as individual markdown files
+    for post in publishable_posts:
         post_file = content_dir / f"{post.slug}.md"
         with open(post_file, 'w', encoding='utf-8') as f:
             f.write(f"---\n")
@@ -476,9 +516,12 @@ def main(force_full_parse: bool = False):
     
     print(f"\n🎉 Processing complete!")
     print(f"   📝 Processed {len(changed_files)} changed files")
-    print(f"   📄 Generated {len(all_posts)} posts")
+    print(f"   📄 Found {len(all_posts)} total posts")
+    print(f"   📋 Published {len(publishable_posts)} posts")
+    if draft_posts:
+        print(f"   📝 Skipped {len(draft_posts)} draft posts")
     print(f"   📎 Referenced {len(parser.referenced_assets)} unique assets")
-    print(f"   🗂️  Tracked {len(parser.current_run_posts)} total posts")
+    print(f"   🗂️  Tracked {len(parser.current_run_posts)} published posts")
 
 if __name__ == "__main__":
     import sys

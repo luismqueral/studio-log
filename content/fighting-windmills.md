@@ -6,7 +6,6 @@ has_title: True
 tags: ["obsidian"]
 ---
 
-#obsidian 
 One of my ongoing side-quests (I guess also battles?) has been what to do about my journal. Specifically what to do about my *Studio Log* which is the thing you're reading right now.
 
 I've used Notion for close to 8 years now and dumped a *lot* of thoughts into that app. But it had it's limits, even if the conveniences kept me coming back for awhile. At least until recently!!
@@ -14,8 +13,8 @@ I've used Notion for close to 8 years now and dumped a *lot* of thoughts into th
 I've finally settled on a solution that I'm somewhat happy with and seems to be helping (evidenced by the amount through which I am actually writing).
 
 <figure>
-  <img src="_assets/image_1750439125895.png" width="auto">
-  <figcaption></figcaption>
+<img src="_assets/image_1750439125895.png" width="auto">
+<figcaption></figcaption>
 </figure>
 At some point I'll try and capture my Obsidian setup in more detail, along with my thoughts on over-complicating systems, but this seems to really be working and sticking for me personally at least.
 
