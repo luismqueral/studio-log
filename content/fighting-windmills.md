@@ -5,6 +5,7 @@ slug: fighting-windmills
 has_title: True
 ---
 
+#obsidian 
 One of my ongoing side-quests (I guess also battles?) has been what to do about my journal. Specifically what to do about my *Studio Log* which is the thing you're reading right now.
 
 I've used Notion for close to 8 years now and dumped a *lot* of thoughts into that app. But it had it's limits, even if the conveniences kept me coming back for awhile. At least until recently!!

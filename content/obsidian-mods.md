@@ -5,6 +5,7 @@ slug: obsidian-mods
 has_title: True
 ---
 
+#obsidian 
 Obsidian plug-in modifications
 <figure class="content-figure">
   <img src="_assets/image_1749589196968.png" width="auto" class="ba b--light-gray bw2 br2">
