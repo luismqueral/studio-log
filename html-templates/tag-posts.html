@@ -12,7 +12,7 @@
         <header class="mb5 flex items-center justify-between">
             <h1 class="f3 ma0">
                 <a href="/" class="link black hover-blue underline-hover" id="random-logo">
-                    <span>s</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>q</span><span>u</span><span>e</span><span>r</span><span>a</span><span>l</span>
+                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
                 </a>
             </h1>
             <nav>
@@ -147,16 +147,18 @@
         // Random logo font assignment
         document.addEventListener('DOMContentLoaded', function() {
             const fonts = [
-                'font-times', 'font-georgia', 'font-baskerville', 'font-arial', 
-                'font-helvetica', 'font-futura', 'font-avenir', 'font-courier', 
-                'font-monaco', 'font-menlo', 'font-impact', 'font-trebuchet', 
-                'font-optima', 'font-palatino', 'font-lucida'
+                'font-comic', 'font-blackletter', 'font-times', 'font-helvetica-bold', 'font-galapagos'
             ];
             
             const logoSpans = document.querySelectorAll('#random-logo span');
-            logoSpans.forEach(span => {
+            logoSpans.forEach((span, index) => {
                 const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
                 span.className = randomFont;
+                
+                // Randomly choose uppercase or lowercase for the first letter "S"
+                if (index === 0) {
+                    span.textContent = Math.random() < 0.5 ? 'S' : 's';
+                }
             });
         });
     </script>

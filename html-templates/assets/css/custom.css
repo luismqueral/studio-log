@@ -155,18 +155,8 @@ pre:hover .copy-button {
 }
 
 /* Random Logo Font Utilities */
+.font-comic { font-family: 'Comic Sans MS', cursive; }
+.font-blackletter { font-family: 'Lucida Blackletter', serif; }
 .font-times { font-family: 'Times New Roman', serif; }
-.font-georgia { font-family: Georgia, serif; }
-.font-baskerville { font-family: Baskerville, serif; }
-.font-arial { font-family: Arial, sans-serif; }
-.font-helvetica { font-family: 'Helvetica Neue', Helvetica, sans-serif; }
-.font-futura { font-family: Futura, sans-serif; }
-.font-avenir { font-family: Avenir, sans-serif; }
-.font-courier { font-family: 'Courier New', monospace; }
-.font-monaco { font-family: Monaco, monospace; }
-.font-menlo { font-family: Menlo, monospace; }
-.font-impact { font-family: Impact, sans-serif; }
-.font-trebuchet { font-family: 'Trebuchet MS', sans-serif; }
-.font-optima { font-family: Optima, sans-serif; }
-.font-palatino { font-family: Palatino, serif; }
-.font-lucida { font-family: 'Lucida Grande', sans-serif; }
+.font-helvetica-bold { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight: bold; }
+.font-galapagos { font-family: 'ABC Galapagos AB Grid Unlicensed Trial', sans-serif; }
