@@ -49,10 +49,14 @@ export default async function TagsPage() {
           <Link 
             key={tag}
             href={`/tags/${tag}`}
-            className="tag-item dib mr3 mb3 pa2 ph3 bg-light-gray hover-bg-moon-gray no-underline br3"
+            className="tag-item dib mr3 mb3 pv3 ph4 bg-near-white hover-bg-light-blue no-underline br-pill transition-all"
+            style={{
+              border: '1px solid #e0e0e0',
+              transition: 'all 0.2s ease'
+            }}
           >
-            <span className="tag-name f4 dark-gray">#{tag}</span>
-            <span className="tag-count f6 gray ml2">({count})</span>
+            <span className="tag-name f4 dark-gray hover-white fw5">#{tag}</span>
+            <span className="tag-count f6 gray hover-white ml2">({count})</span>
           </Link>
         ))}
       </div>

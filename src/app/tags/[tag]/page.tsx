@@ -42,10 +42,19 @@ export default async function TagPage({
         <Link href="/" className="link blue hover-dark-blue">← Back to all posts</Link>
       </div>
       
-      <header className="mb4">
-        <h1 className="f2 mb2">#{tag}</h1>
+      <header className="mb5">
+        <div className="mb3">
+          <span 
+            className="dib pv2 ph4 bg-light-blue white br-pill f3 fw6"
+            style={{
+              border: '1px solid #357edd'
+            }}
+          >
+            #{tag}
+          </span>
+        </div>
         <p className="f5 gray">
-          {filteredPosts.length} post{filteredPosts.length !== 1 ? 's' : ''} tagged with #{tag}
+          {filteredPosts.length} post{filteredPosts.length !== 1 ? 's' : ''} tagged with this
         </p>
       </header>
       

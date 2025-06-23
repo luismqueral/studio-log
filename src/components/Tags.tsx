@@ -12,13 +12,17 @@ export default function Tags({ tags, className = '' }: TagsProps) {
 
   return (
     <div className={`tags ${className}`}>
-      <div className="f6 gray mb2">Tags:</div>
+      <div className="f6 gray mb3">Tagged:</div>
       <div className="tag-list">
         {tags.map((tag) => (
           <Link 
             key={tag}
             href={`/tags/${tag}`}
-            className="tag-link dib mr2 mb2 pa1 ph2 bg-light-gray gray hover-bg-moon-gray hover-dark-gray no-underline br2 f6"
+            className="tag-pill dib mr2 mb2 pv2 ph3 bg-near-white dark-gray hover-bg-light-blue hover-white no-underline br-pill f6 fw5 transition-all"
+            style={{
+              border: '1px solid #e0e0e0',
+              transition: 'all 0.2s ease'
+            }}
           >
             #{tag}
           </Link>
