@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Queral</title>
+    <link rel="stylesheet" href="assets/css/tachyons-base.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+<body class="sans-serif bg-light-gray">
+    <div class="mw7 center pa4">
+        <header class="mb5 flex items-center justify-between">
+            <h1 class="f3 ma0">
+                <a href="/" class="link black hover-blue underline-hover" id="random-logo">
+                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
+                </a>
+            </h1>
+            <nav>
+                <a href="/studio-log" class="link gray hover-blue underline-hover mr4">studio log</a>
+                <a href="/about" class="link gray hover-blue underline-hover mr4">about</a>
+                <a href="/projects" class="link gray hover-blue underline-hover mr4">projects</a>
+                <a href="/contact" class="link gray hover-blue underline-hover">contact</a>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Hero Section -->
+            <section class="mb6 pa5 bg-white br2">
+                <h2 class="f1 ma0 mb4">Studio Queral</h2>
+                <p class="f3 lh-copy measure-wide gray">
+                    <strong>Studio Queral</strong> is the work and practice of Luis Queral, a designer, researcher, and artist based in Baltimore, Maryland.
+                </p>
+            </section>
+
+            <!-- Professional Work Section -->
+            <section class="mb5 pa4 bg-white br2">
+                <div class="mb4">
+                    <h3 class="f2 ma0 mb3">Professional</h3>
+                    <p class="f4 lh-copy measure-wide">
+                        In his professional life he works for <em>The New York Times</em> as a product designer.
+                    </p>
+                    <p class="f4 lh-copy measure-wide">
+                        He's currently on the <em>Platforms Design</em> team and focuses on improving developer workflows and tooling.
+                    </p>
+                    <a href="/work" class="f5 link blue hover-dark-blue underline-hover">Learn More →</a>
+                </div>
+            </section>
+
+            <!-- Creative Work Section -->
+            <section class="mb5 pa4 bg-white br2">
+                <div class="mb4">
+                    <h3 class="f2 ma0 mb3">Creative</h3>
+                    <p class="f4 lh-copy measure-wide">
+                        In his creative life he is a multi-disciplinary artist whose works span video, image, text, and sound-making.
+                    </p>
+                    <p class="f4 lh-copy measure-wide">
+                        The best way to follow his work is through his <a href="/studio-log" class="link blue hover-dark-blue underline-hover">studio log</a> which is updated whenever he feels like it.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="mb5 pa4 bg-white br2">
+                <div class="mb4">
+                    <h3 class="f2 ma0 mb3">Contact</h3>
+                    <p class="f4 lh-copy measure-wide">
+                        He's occasionally active on social-media, but not really.
+                    </p>
+                    <p class="f4 lh-copy measure-wide">
+                        To get in touch, feel free to <a href="mailto:hello@queral.studio" class="link blue hover-dark-blue underline-hover">send him an email</a>.
+                    </p>
+                    <p class="f4 lh-copy measure-wide mt4">
+                        Peace! ✌️
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script>
+        // Random logo font assignment
+        document.addEventListener('DOMContentLoaded', function() {
+            const fonts = [
+                'font-comic', 'font-blackletter', 'font-times', 'font-helvetica-bold', 'font-galapagos'
+            ];
+            
+            const logoSpans = document.querySelectorAll('#random-logo span');
+            logoSpans.forEach((span, index) => {
+                const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+                span.className = randomFont;
+                
+                // Randomly choose uppercase or lowercase for the first letter "S"
+                if (index === 0) {
+                    span.textContent = Math.random() < 0.5 ? 'S' : 's';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
