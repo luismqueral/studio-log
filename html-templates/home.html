@@ -6,80 +6,81 @@
     <title>Studio Queral</title>
     <link rel="stylesheet" href="assets/css/tachyons-base.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
+    <style>
+        #random-logo {
+            outline: none !important;
+        }
+        #random-logo:focus {
+            outline: none !important;
+        }
+        .logo-header {
+            border: 6px solid #000;
+            cursor: pointer;
+            transition: box-shadow 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .logo-header:hover {
+            border-color: var(--hover-border-color, #000);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .logo-header:active {
+            border-color: var(--active-border-color, #000);
+        }
+    </style>
 </head>
 <body class="sans-serif bg-light-gray">
     <div class="mw7 center pa4">
-        <header class="mb5 flex items-center justify-between">
-            <h1 class="f3 ma0">
-                <a href="/" class="link black hover-blue underline-hover" id="random-logo">
-                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
-                </a>
+        <nav class="tc mb4">
+            <a href="index.html" class="link gray hover-blue underline-hover mr4">studio log</a>
+            <a href="about.html" class="link gray hover-blue underline-hover mr4">about</a>
+            <a href="projects.html" class="link gray hover-blue underline-hover mr4">projects</a>
+            <a href="contact.html" class="link gray hover-blue underline-hover">contact</a>
+        </nav>
+        
+        <header class="logo-header tc mw7 center mb4 br2" style="padding: clamp(2rem, 8vw, 5rem);" onclick="window.location.reload();" id="logo-header">
+            <h1 class="ma0 lh-solid" style="font-size: clamp(3rem, 12vw, 10rem);">
+                <span class="link no-underline" id="random-logo">
+                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><br><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
+                </span>
             </h1>
-            <nav>
-                <a href="/studio-log" class="link gray hover-blue underline-hover mr4">studio log</a>
-                <a href="/about" class="link gray hover-blue underline-hover mr4">about</a>
-                <a href="/projects" class="link gray hover-blue underline-hover mr4">projects</a>
-                <a href="/contact" class="link gray hover-blue underline-hover">contact</a>
-            </nav>
         </header>
         
-        <main>
-            <!-- Hero Section -->
-            <section class="mb6 pa5 bg-white br2">
-                <h2 class="f1 ma0 mb4">Studio Queral</h2>
-                <p class="f3 lh-copy measure-wide gray">
-                    <strong>Studio Queral</strong> is the work and practice of Luis Queral, a designer, researcher, and artist based in Baltimore, Maryland.
-                </p>
-            </section>
+        <main class="">
+            <p class="f5 mw6 gray lh-copy center">
+                This is the personal website of <a href="#" class="gray">Luis Queral</a>, a designer, researcher, and artist based in Baltimore, Maryland.
+            </p>
 
-            <!-- Professional Work Section -->
-            <section class="mb5 pa4 bg-white br2">
-                <div class="mb4">
-                    <h3 class="f2 ma0 mb3">Professional</h3>
-                    <p class="f4 lh-copy measure-wide">
-                        In his professional life he works for <em>The New York Times</em> as a product designer.
-                    </p>
-                    <p class="f4 lh-copy measure-wide">
-                        He's currently on the <em>Platforms Design</em> team and focuses on improving developer workflows and tooling.
-                    </p>
-                    <a href="/work" class="f5 link blue hover-dark-blue underline-hover">Learn More →</a>
-                </div>
-            </section>
+            <p class="f5 mw6 gray lh-copy center">
+                He is a senior product designer at <em>The New York Times</em>.
+            </p>
 
-            <!-- Creative Work Section -->
-            <section class="mb5 pa4 bg-white br2">
-                <div class="mb4">
-                    <h3 class="f2 ma0 mb3">Creative</h3>
-                    <p class="f4 lh-copy measure-wide">
-                        In his creative life he is a multi-disciplinary artist whose works span video, image, text, and sound-making.
-                    </p>
-                    <p class="f4 lh-copy measure-wide">
-                        The best way to follow his work is through his <a href="/studio-log" class="link blue hover-dark-blue underline-hover">studio log</a> which is updated whenever he feels like it.
-                    </p>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section class="mb5 pa4 bg-white br2">
-                <div class="mb4">
-                    <h3 class="f2 ma0 mb3">Contact</h3>
-                    <p class="f4 lh-copy measure-wide">
-                        He's occasionally active on social-media, but not really.
-                    </p>
-                    <p class="f4 lh-copy measure-wide">
-                        To get in touch, feel free to <a href="mailto:hello@queral.studio" class="link blue hover-dark-blue underline-hover">send him an email</a>.
-                    </p>
-                    <p class="f4 lh-copy measure-wide mt4">
-                        Peace! ✌️
-                    </p>
-                </div>
-            </section>
         </main>
     </div>
     
     <script>
-        // Random logo font assignment
-        document.addEventListener('DOMContentLoaded', function() {
+        function generateRandomColors() {
+            // Generate random light background color
+            const hue = Math.floor(Math.random() * 360);
+            const saturation = Math.floor(Math.random() * 30) + 10; // 10-40% saturation
+            const lightness = Math.floor(Math.random() * 15) + 85; // 85-100% lightness
+            
+            const backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            const borderColor = `hsl(${hue}, ${saturation + 15}%, ${lightness - 15}%)`;
+            const hoverBorderColor = `hsl(${hue}, ${saturation + 20}%, ${lightness - 25}%)`;
+            const activeBorderColor = `hsl(${hue}, ${saturation + 30}%, ${lightness - 35}%)`;
+            
+            // Calculate contrasting text color
+            const textLightness = lightness > 90 ? 20 : 30; // Darker text for lighter backgrounds
+            const textColor = `hsl(${hue}, ${saturation + 10}%, ${textLightness}%)`;
+            
+            return { backgroundColor, borderColor, hoverBorderColor, activeBorderColor, textColor };
+        }
+        
+        function applyRandomization() {
+            // Random logo font assignment
             const fonts = [
                 'font-comic', 'font-blackletter', 'font-times', 'font-helvetica-bold', 'font-galapagos'
             ];
@@ -94,7 +95,29 @@
                     span.textContent = Math.random() < 0.5 ? 'S' : 's';
                 }
             });
+            
+            // Random background and border colors
+            const colors = generateRandomColors();
+            const header = document.getElementById('logo-header');
+            const logo = document.getElementById('random-logo');
+            
+            header.style.backgroundColor = colors.backgroundColor;
+            header.style.borderColor = colors.borderColor;
+            logo.style.color = colors.textColor;
+            
+            // Update CSS custom properties for hover/active states
+            document.documentElement.style.setProperty('--hover-border-color', colors.hoverBorderColor);
+            document.documentElement.style.setProperty('--active-border-color', colors.activeBorderColor);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            applyRandomization();
         });
+        
+        // Apply full randomization on click
+        document.getElementById('logo-header').onclick = function() {
+            applyRandomization();
+        };
     </script>
 </body>
 </html> 

@@ -6,27 +6,42 @@
     <title>Tags - Studio Log</title>
     <link rel="stylesheet" href="assets/css/tachyons-base.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
+    <style>
+        .nav-logo {
+            text-decoration: none !important;
+            transition: color 0.2s ease, transform 0.1s ease;
+        }
+        .nav-logo:hover {
+            color: #111 !important;
+            text-decoration: none !important;
+        }
+        .nav-logo:active,
+        .nav-logo:focus {
+            transform: translateY(1px);
+            text-decoration: none !important;
+        }
+    </style>
 </head>
 <body class="sans-serif bg-light-gray">
     <div class="mw7 center pa4">
         <header class="mb5 flex items-center justify-between">
             <h1 class="f3 ma0">
-                <a href="/" class="link black hover-blue underline-hover" id="random-logo">
+                <a href="home.html" class="link gray nav-logo" id="random-logo">
                     <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
                 </a>
             </h1>
             <nav>
-                <a href="/studio-log" class="link gray hover-blue underline-hover mr4">studio log</a>
-                <a href="/about" class="link gray hover-blue underline-hover mr4">about</a>
-                <a href="/projects" class="link gray hover-blue underline-hover mr4">projects</a>
-                <a href="/contact" class="link gray hover-blue underline-hover">contact</a>
+                <a href="index.html" class="link gray hover-blue underline-hover mr4">studio log</a>
+                <a href="about.html" class="link gray hover-blue underline-hover mr4">about</a>
+                <a href="projects.html" class="link gray hover-blue underline-hover mr4">projects</a>
+                <a href="contact.html" class="link gray hover-blue underline-hover">contact</a>
             </nav>
         </header>
         
         <main>
             <div class="pa4 bg-white">
                 <div class="mb4">
-                    <a href="/" class="link blue hover-dark-blue hover-underline">← Back to all posts</a>
+                    <a href="index.html" class="link blue hover-dark-blue hover-underline">← Back to all posts</a>
                 </div>
                 
                 <header class="mb5">

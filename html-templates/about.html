@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Studio Queral</title>
+    <link rel="stylesheet" href="assets/css/tachyons-base.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <style>
+        .nav-logo {
+            text-decoration: none !important;
+            transition: color 0.2s ease, transform 0.1s ease;
+        }
+        .nav-logo:hover {
+            color: #111 !important;
+            text-decoration: none !important;
+        }
+        .nav-logo:active,
+        .nav-logo:focus {
+            transform: translateY(1px);
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body class="sans-serif bg-light-gray">
+    <div class="mw7 center pa4">
+        <header class="mb5 flex items-center justify-between">
+            <h1 class="f3 ma0">
+                <a href="home.html" class="link gray nav-logo" id="random-logo">
+                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
+                </a>
+            </h1>
+            <nav>
+                <a href="index.html" class="link gray hover-blue underline-hover mr4">studio log</a>
+                <a href="about.html" class="link black hover-blue underline-hover mr4">about</a>
+                <a href="projects.html" class="link gray hover-blue underline-hover mr4">projects</a>
+                <a href="contact.html" class="link gray hover-blue underline-hover">contact</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="mb5">
+                <h2 class="f2 mb3">About</h2>
+                <p class="f4 gray lh-copy mb4">
+                    Designer, researcher, and creative technologist based in Baltimore, Maryland.
+                </p>
+            </div>
+
+            <div class="about-content">
+                <div class="mb5 pa4 bg-white br2">
+                    <h3 class="f3 mb3">Background</h3>
+                    <div class="lh-copy">
+                        <p class="f4 mb4">
+                            I'm a Senior Product Designer at <em>The New York Times</em>, where I focus on design systems, accessibility, and user experience across digital products. My work sits at the intersection of design, technology, and research.
+                        </p>
+                        
+                        <p class="mb4">
+                            Before joining The Times, I worked on various design and research projects that explored how computational approaches can enhance creative processes. I'm particularly interested in generative systems, typography, and the ways technology can support rather than replace human creativity.
+                        </p>
+
+                        <p class="mb4">
+                            I'm based in Baltimore, Maryland, where I'm involved in the local creative community and conduct research on design practices and creative technology.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb5 pa4 bg-white br2">
+                    <h3 class="f3 mb3">Current Focus</h3>
+                    <div class="lh-copy">
+                        <ul class="list pl0">
+                            <li class="mb3">
+                                <strong>Design Systems:</strong> Building scalable, accessible systems that help teams create consistent, high-quality user experiences
+                            </li>
+                            <li class="mb3">
+                                <strong>Accessibility:</strong> Ensuring digital products work for everyone, with a focus on inclusive design practices
+                            </li>
+                            <li class="mb3">
+                                <strong>Creative Technology:</strong> Exploring how computational tools can augment human creativity without replacing the essential human elements
+                            </li>
+                            <li class="mb3">
+                                <strong>Research:</strong> Investigating design processes, creative communities, and the impact of technology on creative work
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mb5 pa4 bg-white br2">
+                    <h3 class="f3 mb3">This Site</h3>
+                    <div class="lh-copy">
+                        <p class="mb3">
+                            This website serves as my <em>Studio Log</em> — a place to document thoughts, experiments, and work in progress. It's built with Next.js and connects to my Obsidian note-taking system, allowing me to seamlessly move between private reflection and public sharing.
+                        </p>
+                        
+                        <p class="mb3">
+                            The site itself is an ongoing experiment in publishing systems, generative design (notice the randomized typography), and finding the right balance between structure and creative expression.
+                        </p>
+
+                        <p class="ma0">
+                            You can follow along with my thoughts and projects through the <a href="index.html" class="link blue hover-dark-blue">studio log</a>, or get in touch via the <a href="contact.html" class="link blue hover-dark-blue">contact page</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pa4 bg-white br2">
+                    <h3 class="f3 mb3">Philosophy</h3>
+                    <div class="lh-copy">
+                        <p class="mb3">
+                            I believe in design that is both functional and expressive, accessible and innovative. The best creative work happens when technology amplifies human capabilities rather than replacing them entirely.
+                        </p>
+                        
+                        <p class="ma0">
+                            I'm interested in systems that can grow and evolve, communities that support creative risk-taking, and tools that make complex ideas more accessible to more people.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Random logo font assignment
+        document.addEventListener('DOMContentLoaded', function() {
+            const fonts = [
+                'font-comic', 'font-blackletter', 'font-times', 'font-helvetica-bold', 'font-galapagos'
+            ];
+            
+            const logoSpans = document.querySelectorAll('#random-logo span');
+            logoSpans.forEach((span, index) => {
+                const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+                span.className = randomFont;
+                
+                // Randomly choose uppercase or lowercase for the first letter "S"
+                if (index === 0) {
+                    span.textContent = Math.random() < 0.5 ? 'S' : 's';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
