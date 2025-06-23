@@ -10,9 +10,9 @@
 <body class="sans-serif bg-light-gray">
     <div class="mw7 center pa4">
         <header class="mb5 flex items-center justify-between">
-            <h1 class="f3 ma0" style="font-family: 'Lucida Blackletter', serif;">
-                <a href="/" class="link black hover-blue underline-hover">
-                    studio queral
+            <h1 class="f3 ma0">
+                <a href="/" class="link black hover-blue underline-hover" id="random-logo">
+                    <span>s</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>q</span><span>u</span><span>e</span><span>r</span><span>a</span><span>l</span>
                 </a>
             </h1>
             <nav>
@@ -133,5 +133,23 @@
             </div>
         </main>
     </div>
+    
+    <script>
+        // Random logo font assignment
+        document.addEventListener('DOMContentLoaded', function() {
+            const fonts = [
+                'font-times', 'font-georgia', 'font-baskerville', 'font-arial', 
+                'font-helvetica', 'font-futura', 'font-avenir', 'font-courier', 
+                'font-monaco', 'font-menlo', 'font-impact', 'font-trebuchet', 
+                'font-optima', 'font-palatino', 'font-lucida'
+            ];
+            
+            const logoSpans = document.querySelectorAll('#random-logo span');
+            logoSpans.forEach(span => {
+                const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+                span.className = randomFont;
+            });
+        });
+    </script>
 </body>
 </html> 
