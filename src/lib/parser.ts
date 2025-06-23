@@ -50,7 +50,18 @@ export class StudioLogParser {
       const [key, ...valueParts] = line.split(':')
       if (key && valueParts.length > 0) {
         const value = valueParts.join(':').trim()
-        frontmatter[key.trim()] = value
+        const keyName = key.trim()
+        
+        // Special handling for tags (JSON array)
+        if (keyName === 'tags') {
+          try {
+            frontmatter[keyName] = JSON.parse(value)
+          } catch {
+            frontmatter[keyName] = []
+          }
+        } else {
+          frontmatter[keyName] = value
+        }
       }
     })
 
@@ -80,7 +91,8 @@ export class StudioLogParser {
       sourceFile,
       hasTitle: frontmatter.has_title !== 'False',
       urlPath: `${frontmatter.slug || this.generateSlug(frontmatter.title || '', date)}/`,
-      permalink: `${siteConfig.baseUrl.replace(/\/$/, '')}/${frontmatter.slug || this.generateSlug(frontmatter.title || '', date)}/`
+      permalink: `${siteConfig.baseUrl.replace(/\/$/, '')}/${frontmatter.slug || this.generateSlug(frontmatter.title || '', date)}/`,
+      tags: frontmatter.tags || []
     }
 
     return [post]
@@ -155,7 +167,8 @@ export class StudioLogParser {
       sourceFile,
       hasTitle,
       urlPath: `${slug}/`,
-      permalink: `${siteConfig.baseUrl.replace(/\/$/, '')}/${slug}/`
+      permalink: `${siteConfig.baseUrl.replace(/\/$/, '')}/${slug}/`,
+      tags: [] // Legacy parser doesn't extract tags
     }
   }
 

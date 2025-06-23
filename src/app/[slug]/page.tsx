@@ -1,5 +1,6 @@
 import { getAllPosts } from '../../lib/posts'
 import MarkdownRenderer from '../../components/MarkdownRenderer'
+import Tags from '../../components/Tags'
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
@@ -49,6 +50,8 @@ export default async function PostPage({
       <div className="post-content lh-copy f5">
         <MarkdownRenderer content={post.content} />
       </div>
+      
+      <Tags tags={post.tags} className="mt4 pb4 bb b--light-gray" />
       
       <footer className="mt5">
         <div className="post-navigation flex justify-between bt b--light-gray pt4">

@@ -3,6 +3,7 @@ title: Fighting Windmills
 date: 2025-06-12T00:00:00
 slug: fighting-windmills
 has_title: True
+tags: ["obsidian"]
 ---
 
 #obsidian 

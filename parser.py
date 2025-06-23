@@ -12,7 +12,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple, Set
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import markdown
 
 # Configuration
@@ -34,6 +34,7 @@ class Post:
     html_content: str
     source_file: Path
     has_title: bool = False  # True if there's a real title (not just date)
+    tags: List[str] = field(default_factory=list)  # Extracted hashtags from content
     
     @property
     def url_path(self) -> str:
@@ -196,6 +197,28 @@ class IncrementalStudioLogParser:
         
         return assets
     
+    def extract_hashtags(self, content: str) -> List[str]:
+        """Extract hashtags (#tag) from content"""
+        # Pattern to match hashtags: #word 
+        # Exclude markdown headers (# at start of line followed by space)
+        hashtag_pattern = r'(?<!^#\s)(?<!\s#\s)#([a-zA-Z][a-zA-Z0-9_-]*)'
+        
+        hashtags = []
+        lines = content.split('\n')
+        
+        for line in lines:
+            # Skip lines that are markdown headers (start with # followed by space)
+            if line.strip().startswith('# '):
+                continue
+                
+            # Find hashtags in this line
+            for match in re.finditer(hashtag_pattern, line):
+                tag = match.group(1).lower()
+                if tag not in hashtags:  # Avoid duplicates
+                    hashtags.append(tag)
+        
+        return hashtags
+    
     def cleanup_local_assets(self):
         """Remove locally copied assets since we're using Vercel Blob"""
         public_assets_dir = self.output_dir / "public" / "_assets"
@@ -298,6 +321,9 @@ class IncrementalStudioLogParser:
         content_lines = lines[1:]
         content = '\n'.join(content_lines).strip()
         
+        # Extract hashtags from content
+        tags = self.extract_hashtags(content)
+        
         # Convert to HTML
         html_content = self.markdown_processor.reset().convert(content)
         
@@ -308,7 +334,8 @@ class IncrementalStudioLogParser:
             content=content,
             html_content=html_content,
             source_file=source_file,
-            has_title=has_title
+            has_title=has_title,
+            tags=tags
         )
     
     def _parse_title_and_date(self, raw_title: str) -> Tuple[Optional[datetime], Optional[str]]:
@@ -434,6 +461,9 @@ def main(force_full_parse: bool = False):
             f.write(f"date: {post.date.isoformat()}\n")
             f.write(f"slug: {post.slug}\n")
             f.write(f"has_title: {post.has_title}\n")
+            if post.tags:
+                # Write tags as YAML array
+                f.write(f"tags: {json.dumps(post.tags)}\n")
             f.write(f"---\n\n")
             f.write(post.content)
     

@@ -8,4 +8,5 @@ export interface Post {
   hasTitle: boolean
   urlPath: string
   permalink: string
+  tags: string[]
 }

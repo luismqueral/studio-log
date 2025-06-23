@@ -3,6 +3,7 @@ title: Obsidian Mods
 date: 2025-06-11T00:00:00
 slug: obsidian-mods
 has_title: True
+tags: ["obsidian"]
 ---
 
 #obsidian 
