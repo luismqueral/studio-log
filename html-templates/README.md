@@ -41,7 +41,8 @@ Tag-specific posts page showing filtered content. Features:
 ## Styling Notes
 
 - All templates use tachyons CSS classes for styling
-- Custom CSS is loaded from `/assets/css/custom.css` for post content styling
+- CSS files are included in the `assets/css/` directory within this template folder
+- Custom CSS is loaded from `assets/css/custom.css` for post content styling
 - Tag pills use consistent hover effects: `hover-bg-light-blue hover-white`
 - Images use border styling: `ba b--light-gray bw2 br2`
 - Post separators use: `bb b--light-gray mv4`
