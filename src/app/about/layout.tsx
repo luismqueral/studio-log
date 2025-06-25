@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import '../globals.css'
-import { siteConfig } from '../../lib/config'
 import Logo from '../../components/Logo'
 
 export const metadata: Metadata = {

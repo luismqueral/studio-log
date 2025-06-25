@@ -94,7 +94,7 @@ export default function Logo({
 
   useEffect(() => {
     applyRandomization()
-  }, [])
+  }, [applyRandomization])
 
   if (variant === 'nav') {
     return (

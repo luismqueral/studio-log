@@ -12,7 +12,7 @@ export default function PostList({ posts }: PostListProps) {
   }
   return (
     <div className="posts-list">
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <article key={post.slug} className="mb4 mb5-ns pa3 pa4-ns bg-white br2">
           <header className="mb3 mb3-ns">
             <div className="f7 f6-ns gray mb3 mb3-ns">

@@ -16,7 +16,7 @@ export default function AboutPage() {
             My name is Luis Queral. 
           </p>
           <p className="mb3 mb3-ns">
-            I'm a software designer, researcher, and mixed-media artist based in Baltimore, Maryland. 
+            I&apos;m a software designer, researcher, and mixed-media artist based in Baltimore, Maryland. 
           </p>
 
           <p className="b f6 f5-ns f4-ns mb2 mb3-ns">
