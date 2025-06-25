@@ -54,9 +54,9 @@ export default function HomePage() {
             </Link>
             {' '}who leads{' '}
             <Link href="#" className="link gray hover-near-black underline-hover">
-              generative design efforts
+              generative design
             </Link>
-            {' '}at <br/>The New York Times.
+            {' '}<br/> at The New York Times.
           </p>
         </div>
       </main>
