@@ -52,6 +52,7 @@ This document tracks all significant changes to the studio log system in plain E
 
 ## 2024-12-20
 
+- cleaned git history to remove large video files and improve push performance - used git-filter-repo to strip all video files (*.mp4, *.mov, etc.), files >5MB, and build artifacts from entire repository history while preserving all 36 commits, reduced repo size from 800MB+ to 215MB for fast pushes, then further optimized by removing all asset files (images, fonts, etc.) since using CDN, final repo size: 368KB (99.8% reduction)
 - flipped navigation and logo order back on non-homepage pages - logo now appears first (above) navigation links for better visual hierarchy and logo prominence across studio-log, projects, about, and individual post pages
 - added profile image from HTML templates to about page by copying luis-web.jpg to public assets directory
 - set up automated documentation system with Cursor integration - added system prompt to maintain running changelog of all code changes and architectural decisions
