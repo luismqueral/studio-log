@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
 interface LogoProps {
@@ -53,14 +53,46 @@ export default function Logo({
     return { backgroundColor, borderColor, hoverBorderColor, activeBorderColor, textColor }
   }
 
-  const applyRandomization = () => {
+  // Configuration for character rotation randomization
+  const ROTATION_CONFIG = {
+    maxRotation: 8,        // Maximum rotation in degrees (±8°)
+    noRotationChance: 0.4, // 40% chance for no rotation
+    subtleRotationChance: 0.5, // 50% chance for subtle rotation (±3°)
+    boldRotationChance: 0.1    // 10% chance for bold rotation (±8°)
+  }
+
+  const generateCharacterRotation = (): number => {
+    const rand = Math.random()
+    
+    // 40% chance: No rotation at all
+    if (rand < ROTATION_CONFIG.noRotationChance) {
+      return 0
+    }
+    
+    // 50% chance: Subtle rotation (±3 degrees)
+    if (rand < ROTATION_CONFIG.noRotationChance + ROTATION_CONFIG.subtleRotationChance) {
+      return (Math.random() - 0.5) * 6 // ±3 degrees
+    }
+    
+    // 10% chance: Bold rotation (±8 degrees)
+    return (Math.random() - 0.5) * (ROTATION_CONFIG.maxRotation * 2) // ±8 degrees
+  }
+
+  const applyRandomization = useCallback(() => {
     if (!logoRef.current || !containerRef.current) return
 
-    // Random logo font assignment
+    // Random logo font assignment and character rotation
     const logoSpans = logoRef.current.querySelectorAll('span') as NodeListOf<HTMLSpanElement>
     logoSpans.forEach((span, index) => {
       const randomFont = fonts[Math.floor(Math.random() * fonts.length)]
+      const rotation = generateCharacterRotation()
+      
       span.className = randomFont
+      
+      // Apply subtle rotation to each character
+      span.style.display = 'inline-block'
+      span.style.transform = `rotate(${rotation}deg)`
+      span.style.transformOrigin = 'center center'
       
       // Randomly choose uppercase or lowercase for the first letter
       if (index === 0) {
@@ -83,7 +115,7 @@ export default function Logo({
     container.style.setProperty('--border-color', colors.borderColor)
     container.style.setProperty('--hover-border-color', colors.hoverBorderColor)
     container.style.setProperty('--active-border-color', colors.activeBorderColor)
-  }
+  }, [variant, fonts])
 
   const handleClick = () => {
     applyRandomization()
