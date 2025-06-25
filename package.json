@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run compress-videos && next build",
+    "build": "next build",
+    "build:local": "npm run compress-videos && next build",
     "start": "next start",
     "lint": "next lint",
     "parse": "python parser.py",
@@ -16,8 +17,8 @@
     "test-blob": "source venv/bin/activate && python test_blob.py",
     "upload-assets": "source venv/bin/activate && python blob_parser_with_compression.py",
     "upload-assets-basic": "source venv/bin/activate && python blob_parser.py",
-    "deploy": "npm run parse && npm run upload-assets && npm run commit && npm run build && vercel --prod",
-    "deploy:preview": "npm run parse && npm run upload-assets && npm run commit && npm run build && vercel",
+    "deploy": "npm run parse && npm run upload-assets && npm run commit && npm run build:local && vercel --prod",
+    "deploy:preview": "npm run parse && npm run upload-assets && npm run commit && npm run build:local && vercel",
     "publish": "npm run deploy",
     "dev:full": "npm run parse && npm run dev"
   },
