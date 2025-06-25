@@ -40,9 +40,6 @@ export default function Logo({
 
   // Galapagos variant selection - pick one per refresh
   const galapagosVariants = ['galapagos-a', 'galapagos-ab', 'galapagos-abc']
-  const [currentGalapagosVariant, setCurrentGalapagosVariant] = useState(
-    galapagosVariants[Math.floor(Math.random() * galapagosVariants.length)]
-  )
 
   const generateRandomColors = (): ColorScheme => {
     // Generate random light background color
@@ -149,7 +146,6 @@ export default function Logo({
 
     // Pick a new Galapagos variant for this randomization
     const selectedGalapagosVariant = galapagosVariants[Math.floor(Math.random() * galapagosVariants.length)]
-    setCurrentGalapagosVariant(selectedGalapagosVariant)
 
     // Random logo font assignment and character rotation
     const logoSpans = logoRef.current.querySelectorAll('span') as NodeListOf<HTMLSpanElement>
