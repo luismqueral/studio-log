@@ -31,9 +31,9 @@ export default async function PostPage({
   const nextPost = currentIndex > 0 ? posts[currentIndex - 1] : null
   
   return (
-    <article className="measure lh-copy">
-      <header className="mb4">
-        <div className="f5 gray mb3">
+    <article className="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+      <header className="mb3 mb3-ns">
+        <div className="f7 f6-ns gray">
           <time className="post-date" dateTime={post.date.toISOString()}>
             {post.date.toLocaleDateString('en-US', {
               year: 'numeric',
@@ -43,24 +43,24 @@ export default async function PostPage({
           </time>
         </div>
         {post.hasTitle && (
-          <h1 className="f1 ma0">{post.title}</h1>
+          <h1 className="f3 f2-ns lh-title ma0 mt3">{post.title}</h1>
         )}
       </header>
       
-      <div className="post-content lh-copy f5">
+      <div className="post-content f6 f5-ns lh-copy measure-wide">
         <MarkdownRenderer content={post.content} />
       </div>
       
-      <Tags tags={post.tags} className="mt4 pb4 bb b--light-gray" />
+      <Tags tags={post.tags} className="mt4 mt5-ns" />
       
-      <footer className="mt5">
-        <div className="post-navigation flex justify-between bt b--light-gray pt4">
+      <footer className="mt2 mt3-ns">
+        <div className="post-navigation flex justify-between pt3 pt4-ns">
           {prevPost ? (
             <a 
               href={`/${prevPost.slug}/`} 
-              className="nav-previous link blue hover-dark-blue"
+              className="nav-previous link blue hover-dark-blue hover-underline f6 f5-ns"
             >
-              ← {prevPost.title}
+              ← Previous Post
             </a>
           ) : (
             <span></span>
@@ -69,9 +69,9 @@ export default async function PostPage({
           {nextPost ? (
             <a 
               href={`/${nextPost.slug}/`} 
-              className="nav-next link blue hover-dark-blue"
+              className="nav-next link blue hover-dark-blue hover-underline f6 f5-ns"
             >
-              {nextPost.title} →
+              Next Post →
             </a>
           ) : (
             <span></span>

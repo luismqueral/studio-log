@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Studio Queral</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
     <link rel="stylesheet" href="assets/css/tachyons-base.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
     <style>
@@ -11,51 +15,66 @@
             text-decoration: none !important;
             transition: color 0.2s ease, transform 0.1s ease;
         }
-        .nav-logo:hover {
-            color: #111 !important;
-            text-decoration: none !important;
-        }
         .nav-logo:active,
         .nav-logo:focus {
             transform: translateY(1px);
             text-decoration: none !important;
+            outline: none;
+        }
+        
+        .nav-logo-container {
+            border: 3px solid #000;
+            cursor: pointer;
+            transition: box-shadow 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        .nav-logo-container:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body class="sans-serif bg-light-gray">
-    <div class="mw7 center pa4">
-        <header class="mb5 flex items-center justify-between">
-            <h1 class="f3 ma0">
-                <a href="home.html" class="link gray nav-logo" id="random-logo">
-                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
-                </a>
-            </h1>
-            <nav>
-                <a href="index.html" class="link gray hover-blue underline-hover mr4">studio log</a>
-                <a href="about.html" class="link gray hover-blue underline-hover mr4">about</a>
-                <a href="projects.html" class="link gray hover-blue underline-hover mr4">projects</a>
-                <a href="contact.html" class="link black hover-blue underline-hover">contact</a>
+    <div class="mw7 center pa3 pa4-ns">
+        <header class="mb5 tc">
+            <div class="nav-logo-container mb3" id="nav-logo-container">
+                <h1 class="f2 ma0 gray">
+                    <a href="home.html" class="link nav-logo" id="random-logo">
+                        <span>s</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>q</span><span>u</span><span>e</span><span>r</span><span>a</span><span>l</span>
+                    </a>
+                </h1>
+            </div>
+            <nav class="flex flex-wrap justify-center">
+                <a href="index.html" class="link gray hover-near-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">studio log</a>
+                <a href="about.html" class="link gray hover-near-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">about</a>
+                <a href="projects.html" class="link gray hover-near-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">projects</a>
+                <a href="mailto:hey@queral.studio" target="_blank" class="link near-black hover-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 bg-near-white mr0 mb2">contact</a>
             </nav>
         </header>
         
         <main>
-            <div class="mb5">
-                <h2 class="f2 mb3">Contact</h2>
-                <p class="f4 gray lh-copy mb4">
+            <div class="mb4 mb5-ns">
+                <h2 class="f3 f2-ns lh-title mb3 mb3-ns">Contact</h2>
+                <p class="f6 f5-ns gray lh-copy measure mb3 mb3-ns">
                     Get in touch about design work, research collaboration, or just to say hello.
                 </p>
             </div>
 
             <div class="contact-content">
-                <div class="mb5 pa4 bg-white br2">
-                    <h3 class="f3 mb3">Let's Connect</h3>
-                    <div class="lh-copy">
-                        <p class="f4 mb4">
+                <div class="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+                    <h3 class="f4 f3-ns lh-title mb3 mb3-ns">Let's Connect</h3>
+                    <div class="f6 f5-ns lh-copy measure">
+                        <p class="mb3 mb3-ns">
                             I'm always interested in hearing about new projects, especially those that involve design systems, accessibility, creative technology, or community-focused work.
                         </p>
                         
-                        <div class="mb4">
-                            <h4 class="f4 mb2 gray">Email</h4>
+                        <div class="mb3 mb3-ns">
+                            <h4 class="f5 f4-ns mb2 mb3-ns gray">Email</h4>
                             <p class="ma0">
                                 <a href="mailto:hello@studioqueral.com" class="link blue hover-dark-blue">
                                     hello@studioqueral.com
@@ -63,23 +82,23 @@
                             </p>
                         </div>
 
-                        <div class="mb4">
-                            <h4 class="f4 mb2 gray">Social</h4>
+                        <div class="mb3 mb3-ns">
+                            <h4 class="f5 f4-ns mb2 mb3-ns gray">Social</h4>
                             <div class="flex flex-wrap">
-                                <a href="https://twitter.com/luisqueral" class="link blue hover-dark-blue mr4 mb2">
+                                <a href="https://twitter.com/luisqueral" class="link blue hover-dark-blue f6 f5-ns mr3 mr4-ns mb2">
                                     Twitter
                                 </a>
-                                <a href="https://linkedin.com/in/luisqueral" class="link blue hover-dark-blue mr4 mb2">
+                                <a href="https://linkedin.com/in/luisqueral" class="link blue hover-dark-blue f6 f5-ns mr3 mr4-ns mb2">
                                     LinkedIn
                                 </a>
-                                <a href="https://github.com/luisqueral" class="link blue hover-dark-blue mr4 mb2">
+                                <a href="https://github.com/luisqueral" class="link blue hover-dark-blue f6 f5-ns mr3 mr4-ns mb2">
                                     GitHub
                                 </a>
                             </div>
                         </div>
 
-                        <div class="mb4">
-                            <h4 class="f4 mb2 gray">Location</h4>
+                        <div class="mb3 mb3-ns">
+                            <h4 class="f5 f4-ns mb2 mb3-ns gray">Location</h4>
                             <p class="ma0 gray">
                                 Baltimore, Maryland
                             </p>
@@ -87,36 +106,36 @@
                     </div>
                 </div>
 
-                <div class="mb5 pa4 bg-white br2">
-                    <h3 class="f3 mb3">What I'm Interested In</h3>
-                    <div class="lh-copy">
+                <div class="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+                    <h3 class="f4 f3-ns lh-title mb3 mb3-ns">What I'm Interested In</h3>
+                    <div class="f6 f5-ns lh-copy measure">
                         <ul class="list pl0">
-                            <li class="mb3">
+                            <li class="mb3 mb3-ns">
                                 <strong>Design Systems:</strong> Building scalable, accessible design systems that help teams work more effectively
                             </li>
-                            <li class="mb3">
+                            <li class="mb3 mb3-ns">
                                 <strong>Creative Technology:</strong> Exploring how computational approaches can enhance creative processes
                             </li>
-                            <li class="mb3">
+                            <li class="mb3 mb3-ns">
                                 <strong>Research Collaboration:</strong> Academic or industry research projects, especially around design process and tools
                             </li>
-                            <li class="mb3">
+                            <li class="mb3 mb3-ns">
                                 <strong>Community Projects:</strong> Baltimore-focused initiatives or broader creative community building
                             </li>
-                            <li class="mb3">
+                            <li class="mb3 mb3-ns">
                                 <strong>Speaking & Writing:</strong> Opportunities to share insights about design, research, or creative practice
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="pa4 bg-white br2">
-                    <h3 class="f3 mb3">Current Availability</h3>
-                    <div class="lh-copy">
-                        <p class="mb3">
+                <div class="pa3 pa4-ns bg-white br2">
+                    <h3 class="f4 f3-ns lh-title mb3 mb3-ns">Current Availability</h3>
+                    <div class="f6 f5-ns lh-copy measure">
+                        <p class="mb3 mb3-ns">
                             I'm currently focused on my role as Senior Product Designer at The New York Times, but I'm always open to interesting conversations and potential future collaborations.
                         </p>
-                        <p class="ma0 gray f5">
+                        <p class="ma0 gray f7 f6-ns">
                             Response time: Usually within 2-3 business days
                         </p>
                     </div>
@@ -126,8 +145,26 @@
     </div>
     
     <script>
-        // Random logo font assignment
-        document.addEventListener('DOMContentLoaded', function() {
+        function generateRandomColors() {
+            // Generate random light background color
+            const hue = Math.floor(Math.random() * 360);
+            const saturation = Math.floor(Math.random() * 30) + 10; // 10-40% saturation
+            const lightness = Math.floor(Math.random() * 15) + 85; // 85-100% lightness
+            
+            const backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            const borderColor = `hsl(${hue}, ${saturation + 15}%, ${lightness - 15}%)`;
+            const hoverBorderColor = `hsl(${hue}, ${saturation + 20}%, ${lightness - 25}%)`;
+            const activeBorderColor = `hsl(${hue}, ${saturation + 30}%, ${lightness - 35}%)`;
+            
+            // Calculate contrasting text color
+            const textLightness = lightness > 90 ? 20 : 30; // Darker text for lighter backgrounds
+            const textColor = `hsl(${hue}, ${saturation + 10}%, ${textLightness}%)`;
+            
+            return { backgroundColor, borderColor, hoverBorderColor, activeBorderColor, textColor };
+        }
+        
+        function applyRandomization() {
+            // Random logo font assignment
             const fonts = [
                 'font-comic', 'font-blackletter', 'font-times', 'font-helvetica-bold', 'font-galapagos'
             ];
@@ -137,11 +174,25 @@
                 const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
                 span.className = randomFont;
                 
-                // Randomly choose uppercase or lowercase for the first letter "S"
+                // Randomly choose uppercase or lowercase for the first letter "s"
                 if (index === 0) {
                     span.textContent = Math.random() < 0.5 ? 'S' : 's';
                 }
             });
+            
+            // Random background and border colors
+            const colors = generateRandomColors();
+            const container = document.getElementById('nav-logo-container');
+            const logo = document.getElementById('random-logo');
+            
+            container.style.backgroundColor = colors.backgroundColor;
+            container.style.borderColor = colors.borderColor;
+            logo.style.color = colors.textColor;
+        }
+        
+        // Random logo font assignment
+        document.addEventListener('DOMContentLoaded', function() {
+            applyRandomization();
         });
     </script>
 </body>

@@ -11,18 +11,13 @@ export default function Tags({ tags, className = '' }: TagsProps) {
   }
 
   return (
-    <div className={`tags ${className}`}>
+    <div className={className}>
       <div className="flex items-center flex-wrap">
-        <span className="f6 gray mr3">Tags:</span>
         {tags.map((tag) => (
           <Link 
             key={tag}
             href={`/tags/${tag}`}
-            className="tag-pill dib mr2 mb2 pv2 ph3 bg-near-white dark-gray hover-bg-light-blue hover-white no-underline br-pill f6 fw5 transition-all"
-            style={{
-              border: '1px solid #e0e0e0',
-              transition: 'all 0.2s ease'
-            }}
+            className="f7 f6-ns bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3 mb2"
           >
             #{tag}
           </Link>

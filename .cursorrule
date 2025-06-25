@@ -1,0 +1,101 @@
+# Studio Queral Responsive Text System
+
+## CORE RESPONSIVE TEXT PRINCIPLES
+
+### 1. MOBILE-FIRST RESPONSIVE FONT SCALE
+Always start with mobile-optimized sizes, then scale up:
+
+**Primary Text Hierarchy:**
+- `f7 f6-ns f5-l` - Small text (captions, dates, meta)
+- `f6 f5-ns f4-l` - Body text (paragraphs, standard content)  
+- `f5 f4-ns f3-l` - Large body text (emphasis, lead paragraphs)
+- `f4 f3-ns f2-l` - Small headings (h4, h5)
+- `f3 f2-ns f1-l` - Medium headings (h3)
+- `f2 f1-ns f-subheadline-l` - Large headings (h2)
+- `f1 f-subheadline-ns f-headline-l` - Hero headings (h1)
+
+### 2. LINE HEIGHT STANDARDS
+- `lh-copy` (1.5) - Default for body text
+- `lh-title` (1.25) - For headings and short text blocks
+- `lh-solid` (1.0) - For display text and logos only
+
+### 3. READING MEASURE (LINE LENGTH)
+- `measure` (30em) - Optimal for body text
+- `measure-wide` (34em) - For larger text or special content
+- `measure-narrow` (20em) - For sidebar content or captions
+
+### 4. RESPONSIVE SPACING PATTERNS
+**Margins:**
+- `mb2 mb3-ns` - Small spacing between elements
+- `mb3 mb4-ns` - Standard spacing between sections
+- `mb4 mb5-ns` - Large spacing between major sections
+
+**Padding:**
+- `pa3 pa4-ns` - Container/card padding
+- `ph3 ph4-ns pv3 pv4-ns` - Specific control over horizontal/vertical
+
+### 5. FONT WEIGHT HIERARCHY
+- `normal` - Body text (400)
+- `fw6` - Emphasis within body text (600)  
+- `b` - Strong emphasis and small headings (700)
+- `fw3` - Light text for de-emphasis (300)
+
+## IMPLEMENTATION RULES
+
+### Standard Body Text Pattern:
+```html
+<p class="f6 f5-ns lh-copy measure">Your content here</p>
+```
+
+### Article/Post Content Pattern:
+```html
+<div class="f6 f5-ns lh-copy measure-wide">
+  <h2 class="f3 f2-ns lh-title mb3 mb4-ns">Heading</h2>
+  <p class="mb3 mb4-ns">Paragraph content...</p>
+</div>
+```
+
+### Card/Component Content Pattern:
+```html
+<div class="pa3 pa4-ns">
+  <h3 class="f4 f3-ns lh-title mb2 mb3-ns">Card Title</h3>
+  <p class="f6 f5-ns lh-copy">Card content...</p>
+</div>
+```
+
+### Navigation/UI Text Pattern:
+```html
+<a class="f6 f5-ns ph2 ph3-ns pv1 pv2-ns">Link Text</a>
+```
+
+## BREAKPOINT REFERENCE
+- No suffix = Default (mobile)
+- `-ns` = Not small (30em+, ~480px+)
+- `-m` = Medium (30em-60em, ~480px-960px)  
+- `-l` = Large (60em+, ~960px+)
+
+## ACCESSIBILITY REQUIREMENTS
+- Minimum font size: f7 (0.75rem, ~12px)
+- Minimum line height: 1.4 for body text
+- Maximum line length: 75 characters (~measure-wide)
+- Ensure sufficient color contrast (4.5:1 minimum)
+
+## MOBILE-SPECIFIC CONSIDERATIONS
+- Increase touch targets: minimum 44px height for interactive elements
+- Use larger spacing on mobile: prefer `mb3` over `mb2` on small screens  
+- Consider thumb-friendly navigation zones
+- Test with iOS Dynamic Type and Android font scaling
+
+## COMMON PATTERNS TO AVOID
+- Fixed px font sizes in CSS
+- Single breakpoint responsive (use mobile-first progression)
+- Overly long lines on desktop (always use measure classes)
+- Inconsistent spacing (stick to the scale)
+
+## TEMPLATE CONSISTENCY CHECKLIST
+- [ ] All body text uses f6 f5-ns minimum
+- [ ] All text blocks use lh-copy or lh-title  
+- [ ] All content containers use measure/measure-wide
+- [ ] All spacing follows mb2/mb3/mb4 + -ns pattern
+- [ ] All interactive elements have proper touch targets
+- [ ] Navigation uses responsive padding (ph2 ph3-ns pv1 pv2-ns) 

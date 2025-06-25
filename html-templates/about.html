@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Studio Queral</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
     <link rel="stylesheet" href="assets/css/tachyons-base.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
     <style>
@@ -11,106 +15,110 @@
             text-decoration: none !important;
             transition: color 0.2s ease, transform 0.1s ease;
         }
-        .nav-logo:hover {
-            color: #111 !important;
-            text-decoration: none !important;
-        }
         .nav-logo:active,
         .nav-logo:focus {
             transform: translateY(1px);
             text-decoration: none !important;
+            outline: none;
+        }
+        
+        .nav-logo-container {
+            border: 3px solid #000;
+            cursor: pointer;
+            transition: box-shadow 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        .nav-logo-container:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-image {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            max-width: 300px;
+        }
+        
+        .profile-image:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        @media screen and (max-width: 30em) {
+            .profile-image {
+                max-width: 250px;
+            }
         }
     </style>
 </head>
 <body class="sans-serif bg-light-gray">
-    <div class="mw7 center pa4">
-        <header class="mb5 flex items-center justify-between">
-            <h1 class="f3 ma0">
-                <a href="home.html" class="link gray nav-logo" id="random-logo">
-                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
-                </a>
-            </h1>
-            <nav>
-                <a href="index.html" class="link gray hover-blue underline-hover mr4">studio log</a>
-                <a href="about.html" class="link black hover-blue underline-hover mr4">about</a>
-                <a href="projects.html" class="link gray hover-blue underline-hover mr4">projects</a>
-                <a href="contact.html" class="link gray hover-blue underline-hover">contact</a>
+    <div class="measure-wide center pa3 pa4-ns">
+        <header class="mb3 tc">
+            <div class="nav-logo-container mb3" id="nav-logo-container">
+                <h1 class="f2 ma0 gray">
+                    <a href="home.html" class="link nav-logo" id="random-logo">
+                        <span>s</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>q</span><span>u</span><span>e</span><span>r</span><span>a</span><span>l</span>
+                    </a>
+                </h1>
+            </div>
+            <nav class="flex flex-wrap justify-center">
+                <a href="index.html" class="link gray hover-near-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">studio log</a>
+                <a href="projects.html" class="link gray hover-near-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">projects</a>
+                <a href="about.html" class="link near-black hover-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 bg-near-white mr0 mb2">about</a>
             </nav>
         </header>
         
         <main>
-            <div class="mb5">
-                <h2 class="f2 mb3">About</h2>
-                <p class="f4 gray lh-copy mb4">
-                    Designer, researcher, and creative technologist based in Baltimore, Maryland.
-                </p>
-            </div>
-
             <div class="about-content">
-                <div class="mb5 pa4 bg-white br2">
-                    <h3 class="f3 mb3">Background</h3>
-                    <div class="lh-copy">
-                        <p class="f4 mb4">
-                            I'm a Senior Product Designer at <em>The New York Times</em>, where I focus on design systems, accessibility, and user experience across digital products. My work sits at the intersection of design, technology, and research.
+                <div class="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+                    <div class="f6 f5-ns lh-copy">
+
+                        <div class="tc mb3 mb3-ns center">
+                            <img src="assets/images/luis-web.jpg" 
+                                 alt="Luis Queral - Designer and researcher" 
+                                 class="w-80"
+                                 loading="lazy">
+                        </div>
+
+                        <p class="mb3 mb3-ns">
+                            My name is Luis Queral. 
+                        </p>
+                        <p class="mb3 mb3-ns">
+                            I'm a software designer, researcher, and mixed-media artist based in Baltimore, Maryland. 
+                        </p>
+
+                        
+                        
+                        <p class="b f6 f5-ns f4-ns mb2 mb3-ns">
+                            In my professional life...
+                        </p>
+
+                        <p class="mb3 mb3-ns">
+                            TKTK
+                        </p>
+
+                        <p class="b f6 f5-ns f4-ns mb2 mb3-ns">
+                            In my creative life...
                         </p>
                         
-                        <p class="mb4">
-                            Before joining The Times, I worked on various design and research projects that explored how computational approaches can enhance creative processes. I'm particularly interested in generative systems, typography, and the ways technology can support rather than replace human creativity.
+                        <p class="mb3 mb3-ns">
+                            TKTK
                         </p>
 
-                        <p class="mb4">
-                            I'm based in Baltimore, Maryland, where I'm involved in the local creative community and conduct research on design practices and creative technology.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mb5 pa4 bg-white br2">
-                    <h3 class="f3 mb3">Current Focus</h3>
-                    <div class="lh-copy">
-                        <ul class="list pl0">
-                            <li class="mb3">
-                                <strong>Design Systems:</strong> Building scalable, accessible systems that help teams create consistent, high-quality user experiences
-                            </li>
-                            <li class="mb3">
-                                <strong>Accessibility:</strong> Ensuring digital products work for everyone, with a focus on inclusive design practices
-                            </li>
-                            <li class="mb3">
-                                <strong>Creative Technology:</strong> Exploring how computational tools can augment human creativity without replacing the essential human elements
-                            </li>
-                            <li class="mb3">
-                                <strong>Research:</strong> Investigating design processes, creative communities, and the impact of technology on creative work
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mb5 pa4 bg-white br2">
-                    <h3 class="f3 mb3">This Site</h3>
-                    <div class="lh-copy">
-                        <p class="mb3">
-                            This website serves as my <em>Studio Log</em> — a place to document thoughts, experiments, and work in progress. It's built with Next.js and connects to my Obsidian note-taking system, allowing me to seamlessly move between private reflection and public sharing.
-                        </p>
-                        
-                        <p class="mb3">
-                            The site itself is an ongoing experiment in publishing systems, generative design (notice the randomized typography), and finding the right balance between structure and creative expression.
+                        <p class="b f6 f5-ns f4-ns mb2 mb3-ns">
+                            In my personal life...
                         </p>
 
                         <p class="ma0">
-                            You can follow along with my thoughts and projects through the <a href="index.html" class="link blue hover-dark-blue">studio log</a>, or get in touch via the <a href="contact.html" class="link blue hover-dark-blue">contact page</a>.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="pa4 bg-white br2">
-                    <h3 class="f3 mb3">Philosophy</h3>
-                    <div class="lh-copy">
-                        <p class="mb3">
-                            I believe in design that is both functional and expressive, accessible and innovative. The best creative work happens when technology amplifies human capabilities rather than replacing them entirely.
+                            TKTK
                         </p>
                         
-                        <p class="ma0">
-                            I'm interested in systems that can grow and evolve, communities that support creative risk-taking, and tools that make complex ideas more accessible to more people.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -118,8 +126,26 @@
     </div>
     
     <script>
-        // Random logo font assignment
-        document.addEventListener('DOMContentLoaded', function() {
+        function generateRandomColors() {
+            // Generate random light background color
+            const hue = Math.floor(Math.random() * 360);
+            const saturation = Math.floor(Math.random() * 30) + 10; // 10-40% saturation
+            const lightness = Math.floor(Math.random() * 15) + 85; // 85-100% lightness
+            
+            const backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            const borderColor = `hsl(${hue}, ${saturation + 15}%, ${lightness - 15}%)`;
+            const hoverBorderColor = `hsl(${hue}, ${saturation + 20}%, ${lightness - 25}%)`;
+            const activeBorderColor = `hsl(${hue}, ${saturation + 30}%, ${lightness - 35}%)`;
+            
+            // Calculate contrasting text color
+            const textLightness = lightness > 90 ? 20 : 30; // Darker text for lighter backgrounds
+            const textColor = `hsl(${hue}, ${saturation + 10}%, ${textLightness}%)`;
+            
+            return { backgroundColor, borderColor, hoverBorderColor, activeBorderColor, textColor };
+        }
+        
+        function applyRandomization() {
+            // Random logo font assignment
             const fonts = [
                 'font-comic', 'font-blackletter', 'font-times', 'font-helvetica-bold', 'font-galapagos'
             ];
@@ -129,11 +155,25 @@
                 const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
                 span.className = randomFont;
                 
-                // Randomly choose uppercase or lowercase for the first letter "S"
+                // Randomly choose uppercase or lowercase for the first letter "s"
                 if (index === 0) {
                     span.textContent = Math.random() < 0.5 ? 'S' : 's';
                 }
             });
+            
+            // Random background and border colors
+            const colors = generateRandomColors();
+            const container = document.getElementById('nav-logo-container');
+            const logo = document.getElementById('random-logo');
+            
+            container.style.backgroundColor = colors.backgroundColor;
+            container.style.borderColor = colors.borderColor;
+            logo.style.color = colors.textColor;
+        }
+        
+        // Random logo font assignment
+        document.addEventListener('DOMContentLoaded', function() {
+            applyRandomization();
         });
     </script>
 </body>

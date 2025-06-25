@@ -13,9 +13,9 @@ export default function PostList({ posts }: PostListProps) {
   return (
     <div className="posts-list">
       {posts.map((post, index) => (
-        <article key={post.slug} className="mb5">
-          <header className="mb3">
-            <div className="f5 gray mb2">
+        <article key={post.slug} className="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+          <header className="mb3 mb3-ns">
+            <div className="f7 f6-ns gray mb3 mb3-ns">
               <a href={`/${post.slug}/`} className="link gray hover-blue">
                 <time className="post-date" dateTime={post.date.toISOString()}>
                   {post.date.toLocaleDateString('en-US', {
@@ -27,23 +27,19 @@ export default function PostList({ posts }: PostListProps) {
               </a>
             </div>
             {post.hasTitle && (
-              <h2 className="f3 ma0">
-                <a href={`/${post.slug}/`} className="link black hover-blue">
+              <h2 className="f4 f3-ns lh-title ma0">
+                <a href={`/${post.slug}/`} className="link black underline-hover">
                   {post.title}
                 </a>
               </h2>
             )}
           </header>
           
-          <div className="lh-copy">
+          <div className="f6 f5-ns lh-copy">
             <MarkdownRenderer content={post.content} />
           </div>
 
-          <Tags tags={post.tags} className="mt3" />
-          
-          {index < posts.length - 1 && (
-            <hr className="post-separator bb b--light-gray mv4" />
-          )}
+          <Tags tags={post.tags} className="mt4 mt5-ns" />
         </article>
       ))}
     </div>

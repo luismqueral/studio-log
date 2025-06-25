@@ -63,6 +63,20 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
               {children}
             </a>
           ),
+          img: ({ src, alt, ...props }) => (
+            <figure className="content-figure">
+              <img 
+                src={src} 
+                alt={alt} 
+                width="auto" 
+                className="ba b--light-gray bw2 br2"
+                {...props}
+              />
+              {alt && (
+                <figcaption className="f7 f6-ns gray tl">{alt}</figcaption>
+              )}
+            </figure>
+          ),
         }}
       >
         {content}

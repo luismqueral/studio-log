@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Log</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
     <link rel="stylesheet" href="assets/css/tachyons-base.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
     <style>
@@ -11,67 +15,81 @@
             text-decoration: none !important;
             transition: color 0.2s ease, transform 0.1s ease;
         }
-        .nav-logo:hover {
-            color: #111 !important;
-            text-decoration: none !important;
-        }
         .nav-logo:active,
         .nav-logo:focus {
             transform: translateY(1px);
             text-decoration: none !important;
+            outline: none;
+        }
+        
+        .nav-logo-container {
+            border: 3px solid #000;
+            cursor: pointer;
+            transition: box-shadow 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        .nav-logo-container:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body class="sans-serif bg-light-gray">
-    <div class="mw7 center pa4">
-        <header class="mb5 flex items-center justify-between">
-            <h1 class="f3 ma0">
-                <a href="home.html" class="link gray nav-logo" id="random-logo">
-                    <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
-                </a>
-            </h1>
-            <nav>
-                <a href="index.html" class="link black hover-blue underline-hover mr4">studio log</a>
-                <a href="about.html" class="link gray hover-blue underline-hover mr4">about</a>
-                <a href="projects.html" class="link gray hover-blue underline-hover mr4">projects</a>
-                <a href="contact.html" class="link gray hover-blue underline-hover">contact</a>
+    <div class="mw7 center pa3 pa4-ns">
+        <header class="mb4 tc">
+            <div class="nav-logo-container mb3" id="nav-logo-container">
+                <h1 class="f2 ma0 gray">
+                    <a href="home.html" class="link nav-logo" id="random-logo">
+                        <span>s</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><span> </span><span>q</span><span>u</span><span>e</span><span>r</span><span>a</span><span>l</span>
+                    </a>
+                </h1>
+            </div>
+            <nav class="flex flex-wrap justify-center">
+                <a href="index.html" class="link near-black hover-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 bg-near-white mr2 mr3-ns mb2">studio log</a>
+                <a href="projects.html" class="link gray hover-near-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">projects</a>
+                <a href="about.html" class="link gray hover-near-black underline-hover f6 f5-ns ph2 ph3-ns pv1 pv2-ns br3 mr0 mb2">about</a>
             </nav>
         </header>
         
         <main>
             <div class="posts-list">
                 <!-- Post 1: Fighting Windmills -->
-                <article class="mb5 pa4 bg-white br2">
-                    <header class="mb3">
-                        <div class="f5 gray mb3">
-                            <a href="/fighting-windmills/" class="link gray hover-blue">
+                <article class="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+                    <header class="mb3 mb3-ns">
+                        <div class="f7 f6-ns gray mb3 mb3-ns">
+                            <a href="post.html" class="link gray hover-blue">
                                 <time class="post-date" datetime="2025-06-12T00:00:00">
                                     June 12, 2025
                                 </time>
                             </a>
                         </div>
-                        <h2 class="f3 ma0">
-                            <a href="/fighting-windmills/" class="link black underline-hover">
+                        <h2 class="f4 f3-ns lh-title ma0">
+                            <a href="post.html" class="link black underline-hover">
                                 Fighting Windmills
                             </a>
                         </h2>
                     </header>
                     
-                    <div class="lh-copy">
+                    <div class="f6 f5-ns lh-copy">
                         <p>One of my ongoing side-quests (I guess also battles?) has been what to do about my journal. Specifically what to do about my <em>Studio Log</em> which is the thing you're reading right now.</p>
                         <p>I've used Notion for close to 8 years now and dumped a <em>lot</em> of thoughts into that app. But it had it's limits, even if the conveniences kept me coming back for awhile. At least until recently!!</p>
                         <p>I've finally settled on a solution that I'm somewhat happy with and seems to be helping (evidenced by the amount through which I am actually writing).</p>
                         <figure class="content-figure">
                             <img src="https://mp1ewwuojwmnpxpy.public.blob.vercel-storage.com/image_1750439125895-gQp8r1LWWDoguEHs5OmX1fHqLbPG4V.webp" width="auto" class="ba b--light-gray bw2 br2">
-                            <figcaption class="f6 gray tl"></figcaption>
+                            <figcaption class="f7 f6-ns gray tl"></figcaption>
                         </figure>
                         <p>At some point I'll try and capture my Obsidian setup in more detail, along with my thoughts on over-complicating systems, but this seems to really be working and sticking for me personally at least.</p>
                         <p><em>Writing</em> is one thing, <em>sharing</em> is another, which I think is also handled well by a new system that I was able to cobble together with <em>Cursor</em> and <em>Next.js</em> — which resulted in an app / deployment process that preps all of this and sends it to Vercel.</p>
                     </div>
 
-                    <div class="mt5">
+                    <div class="mt4 mt5-ns">
                         <div class="flex items-center flex-wrap">
-                            <a href="/tags/obsidian" class="f6 bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3">
+                            <a href="tag-posts.html" class="f7 f6-ns bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3 mb2">
                                 #obsidian
                             </a>
                         </div>
@@ -80,10 +98,10 @@
                 </article>
 
                 <!-- Post 2: Daily Entry -->
-                <article class="mb5 pa4 bg-white br2">
-                    <header class="mb3">
-                        <div class="f5 gray mb2">
-                            <a href="/6-10-2025/" class="link gray hover-blue underline-hover">
+                <article class="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+                    <header class="mb3 mb3-ns">
+                        <div class="f7 f6-ns gray mb2 mb3-ns">
+                            <a href="post.html" class="link gray hover-blue underline-hover">
                                 <time class="post-date" datetime="2025-06-10T00:00:00">
                                     June 10, 2025
                                 </time>
@@ -91,26 +109,26 @@
                         </div>
                     </header>
                     
-                    <div class="lh-copy">
+                    <div class="f6 f5-ns lh-copy">
                         <ul>
                             <li>i love this because it's like an extension of human-authored game writing rather than a replacement, in a way it's a QA tool</li>
                         </ul>
                         <figure class="content-figure">
                             <img src="https://mp1ewwuojwmnpxpy.public.blob.vercel-storage.com/image_1749486308444-CgYAAL9wBPH0dlZOg0RJD7EKQcHxSJ.webp" width="auto" class="ba b--light-gray bw2 br2">
-                            <figcaption class="f6 gray tl"></figcaption>
+                            <figcaption class="f7 f6-ns gray tl"></figcaption>
                         </figure>
                         <figure class="content-figure">
                             <img src="https://mp1ewwuojwmnpxpy.public.blob.vercel-storage.com/image_1749486351376-u1TGF77vn0fw3WY5NOpycBJQstaxiv.webp" width="auto" class="ba b--light-gray bw2 br2">
-                            <figcaption class="f6 gray tl"></figcaption>
+                            <figcaption class="f7 f6-ns gray tl"></figcaption>
                         </figure>
                     </div>
 
-                    <div class="mt5">
+                    <div class="mt4 mt5-ns">
                         <div class="flex items-center flex-wrap">
-                            <a href="/tags/games" class="f6 bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3">
+                            <a href="tag-posts.html" class="f7 f6-ns bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3 mb2">
                                 #games
                             </a>
-                            <a href="/tags/writing" class="f6 bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3">
+                            <a href="tag-posts.html" class="f7 f6-ns bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3 mb2">
                                 #writing
                             </a>
                         </div>
@@ -118,10 +136,10 @@
                 </article>
 
                 <!-- Post 3: Another Daily Entry -->
-                <article class="mb5 pa4 bg-white br2">
-                    <header class="mb3">
-                        <div class="f5 gray mb2">
-                            <a href="/6-9-2025/" class="link gray hover-blue underline-hover">
+                <article class="mb4 mb5-ns pa3 pa4-ns bg-white br2">
+                    <header class="mb3 mb3-ns">
+                        <div class="f7 f6-ns gray mb2 mb3-ns">
+                            <a href="post.html" class="link gray hover-blue underline-hover">
                                 <time class="post-date" datetime="2025-06-09T00:00:00">
                                     June 9, 2025
                                 </time>
@@ -129,17 +147,17 @@
                         </div>
                     </header>
                     
-                    <div class="lh-copy">
+                    <div class="f6 f5-ns lh-copy">
                         <p>Working on some new generative art pieces today. The intersection between procedural generation and human curation continues to fascinate me.</p>
                         <p>There's something about the balance between randomness and control that feels very relevant to the current moment in creative tools.</p>
                     </div>
 
-                    <div class="mt5">
+                    <div class="mt4 mt5-ns">
                         <div class="flex items-center flex-wrap">
-                            <a href="/tags/generative-art" class="f6 bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3">
+                            <a href="tag-posts.html" class="f7 f6-ns bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3 mb2">
                                 #generative-art
                             </a>
-                            <a href="/tags/creative-tools" class="f6 bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3">
+                            <a href="tag-posts.html" class="f7 f6-ns bg-near-white hover-bg-light-gray br2 pa2 link gray hover-blue mr3 mb2">
                                 #creative-tools
                             </a>
                         </div>
@@ -150,8 +168,26 @@
     </div>
     
     <script>
-        // Random logo font assignment
-        document.addEventListener('DOMContentLoaded', function() {
+        function generateRandomColors() {
+            // Generate random light background color
+            const hue = Math.floor(Math.random() * 360);
+            const saturation = Math.floor(Math.random() * 30) + 10; // 10-40% saturation
+            const lightness = Math.floor(Math.random() * 15) + 85; // 85-100% lightness
+            
+            const backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            const borderColor = `hsl(${hue}, ${saturation + 15}%, ${lightness - 15}%)`;
+            const hoverBorderColor = `hsl(${hue}, ${saturation + 20}%, ${lightness - 25}%)`;
+            const activeBorderColor = `hsl(${hue}, ${saturation + 30}%, ${lightness - 35}%)`;
+            
+            // Calculate contrasting text color
+            const textLightness = lightness > 90 ? 20 : 30; // Darker text for lighter backgrounds
+            const textColor = `hsl(${hue}, ${saturation + 10}%, ${textLightness}%)`;
+            
+            return { backgroundColor, borderColor, hoverBorderColor, activeBorderColor, textColor };
+        }
+        
+        function applyRandomization() {
+            // Random logo font assignment
             const fonts = [
                 'font-comic', 'font-blackletter', 'font-times', 'font-helvetica-bold', 'font-galapagos'
             ];
@@ -161,12 +197,31 @@
                 const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
                 span.className = randomFont;
                 
-                // Randomly choose uppercase or lowercase for the first letter "S"
+                // Randomly choose uppercase or lowercase for the first letter "s"
                 if (index === 0) {
                     span.textContent = Math.random() < 0.5 ? 'S' : 's';
                 }
             });
+            
+            // Random background and border colors
+            const colors = generateRandomColors();
+            const container = document.getElementById('nav-logo-container');
+            const logo = document.getElementById('random-logo');
+            
+            container.style.backgroundColor = colors.backgroundColor;
+            container.style.borderColor = colors.borderColor;
+            logo.style.color = colors.textColor;
+        }
+        
+        // Random logo font assignment
+        document.addEventListener('DOMContentLoaded', function() {
+            applyRandomization();
         });
+        
+        // Apply full randomization on click
+        document.getElementById('nav-logo-container').onclick = function() {
+            applyRandomization();
+        };
     </script>
 </body>
 </html> 

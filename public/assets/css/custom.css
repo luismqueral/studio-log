@@ -152,4 +152,11 @@ pre:hover .copy-button {
 
 .tags .f6 {
   font-weight: 500;
-} 
+}
+
+/* Random Logo Font Utilities */
+.font-comic { font-family: 'Comic Sans MS', cursive; }
+.font-blackletter { font-family: 'Lucida Blackletter', serif; }
+.font-times { font-family: 'Times New Roman', serif; }
+.font-helvetica-bold { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight: bold; }
+.font-galapagos { font-family: 'ABC Galapagos AB Grid Unlicensed Trial', sans-serif; }

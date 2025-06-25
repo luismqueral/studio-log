@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Queral</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
+    <link rel="manifest" href="assets/images/site.webmanifest">
     <link rel="stylesheet" href="assets/css/tachyons-base.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
     <style>
@@ -32,15 +37,16 @@
     </style>
 </head>
 <body class="sans-serif bg-light-gray">
-    <div class="mw7 center pa4">
-        <nav class="tc mb4">
-            <a href="index.html" class="link gray hover-blue underline-hover mr4">studio log</a>
-            <a href="about.html" class="link gray hover-blue underline-hover mr4">about</a>
-            <a href="projects.html" class="link gray hover-blue underline-hover mr4">projects</a>
-            <a href="contact.html" class="link gray hover-blue underline-hover">contact</a>
-        </nav>
+    <div class="mw7 center pa3 pa4-ns">
+        <header class="mb3 flex justify-center">
+            <nav class="flex flex-wrap justify-center">
+                <a href="index.html" class="link gray hover-near-black underline-hover f6 f4-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">studio log</a>
+                <a href="projects.html" class="link gray hover-near-black underline-hover f6 f4-ns ph2 ph3-ns pv1 pv2-ns br3 mr2 mr3-ns mb2">projects</a>
+                <a href="about.html" class="link gray hover-near-black underline-hover f4 f4-ns ph2 ph3-ns pv1 pv2-ns br3 mr0 mb2">about</a>
+            </nav>
+        </header>
         
-        <header class="logo-header tc mw7 center mb4 br2" style="padding: clamp(2rem, 8vw, 5rem);" onclick="window.location.reload();" id="logo-header">
+        <header class="logo-header tc mw7 center mb3 br2" style="padding: clamp(2rem, 8vw, 5rem);" onclick="window.location.reload();" id="logo-header">
             <h1 class="ma0 lh-solid" style="font-size: clamp(3rem, 12vw, 10rem);">
                 <span class="link no-underline" id="random-logo">
                     <span>S</span><span>t</span><span>u</span><span>d</span><span>i</span><span>o</span><br><span>Q</span><span>u</span><span>e</span><span>r</span><span>A</span><span>l</span>
@@ -48,15 +54,16 @@
             </h1>
         </header>
         
-        <main class="">
-            <p class="f5 mw6 gray lh-copy center">
-                This is the personal website of <a href="#" class="gray">Luis Queral</a>, a designer, researcher, and artist based in Baltimore, Maryland.
-            </p>
+        <main class="tc">
+            <div class="measure-wide tl center">
+                <p class="f6 f4-ns near-black lh-copy mb4 mb3-ns">
+                    This is the personal website of <a href="about.html" class="link gray hover-near-black underline-hover">Luis Queral</a>.
+                </p>
 
-            <p class="f5 mw6 gray lh-copy center">
-                He is a senior product designer at <em>The New York Times</em>.
-            </p>
-
+                <p class="f6 f4-ns near-black lh-copy">
+                    He is a <a href="projects.html" class="link gray hover-near-black underline-hover">software designer</a>, <a href="projects.html" class="link gray hover-near-black underline-hover">hypermedia artist</a>, and <a href="about.html" class="link gray hover-near-black underline-hover">researcher</a> who leads <a href="#" class="link gray hover-near-black underline-hover">generative design</a> at The New York Times.
+                </p>
+            </div>
         </main>
     </div>
     

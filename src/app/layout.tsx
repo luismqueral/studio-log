@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import './globals.css'
 import { siteConfig } from '../lib/config'
+import Logo from '../components/Logo'
 
 export const metadata: Metadata = {
-  title: siteConfig.siteName,
-  description: 'Notes on software making, generative art, assorted projects, and the things that inspire me.',
+  title: 'Studio Queral',
+  description: 'Personal website of Luis Queral - software designer, hypermedia artist, and researcher.',
 }
 
 export default function RootLayout({
@@ -16,26 +17,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         <link rel="stylesheet" href="/assets/css/tachyons-base.css" />
         <link rel="stylesheet" href="/assets/css/custom.css" />
       </head>
-      <body className="sans-serif">
-        <div className="mw7 center pa4">
-          <header className="mb5">
-            <h1 className="f2 ma0">
-              <Link href="/" className="link black hover-blue">
-                {siteConfig.siteName}
-              </Link>
-            </h1>
-            <p className="f5 gray mt2 mb0">
-              Notes on software making, generative art, assorted projects, and the things that inspire me.
-            </p>
-          </header>
-          
-          <main>
-            {children}
-          </main>
-        </div>
+      <body className="sans-serif bg-light-gray">
+        {children}
       </body>
     </html>
   )
