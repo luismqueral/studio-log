@@ -19,3 +19,8 @@ I've finally settled on a solution that I'm somewhat happy with and seems to be 
 At some point I'll try and capture my Obsidian setup in more detail, along with my thoughts on over-complicating systems, but this seems to really be working and sticking for me personally at least.
 
 _Writing_ is one thing, _sharing_ is another, which I think is also handled well by a new system that I was able to cobble together with _Cursor_ and _Next.js_ — which resulted in an app / deployment process that preps all of this and sends it to Vercel. The biggest blocker there has always been storage, which was also figured out with "Blobs" (again something else I can get into another time).
+
+<figure>
+<img src="https://mp1ewwuojwmnpxpy.public.blob.vercel-storage.com/image_1750825287046-7Xj4jeA4hyryrWqnW2pbTkFZLXFuz1.webp" width="auto">
+<figcaption></figcaption>
+</figure>
