@@ -2,6 +2,37 @@
 
 This document tracks all significant changes to the studio log system in plain English.
 
+## 2025-01-25
+
+- disabled font smoothing across all logo variants - added WebkitFontSmoothing: 'none', MozOsxFontSmoothing: 'unset', and fontSmooth: 'never' to both nav and hero logo h1 elements for sharper, more defined text rendering that maintains font character
+- removed click animations and transitions from logo interactions - eliminated transform/translateY animations on nav logo link focus/blur/mouseDown/mouseUp events, removed opacity transition from hero logo text fade-in, and removed color/transform transitions from nav logo hover states while preserving the shadow hover effect behind the logo container
+- preserved shadow hover states on logo containers - maintained the subtle box-shadow transitions (0.2s ease) and border-color changes that provide visual feedback without interfering with the crisp font rendering
+- removed border-color transition on click - changed transition from 'box-shadow 0.2s ease, border-color 0.2s ease' to just 'box-shadow 0.2s ease' on both nav and hero variants, making border color changes instant while keeping smooth shadow hover effects
+- added Inter as default body font - loaded Inter from Google Fonts with weights 300-700, created .font-inter CSS class with proper fallback stack and OpenType features (cv02, cv03, cv04, cv11), updated body from sans-serif to font-inter class, excluded Inter from logo font randomization to maintain current logo variety
+- changed webkit font smoothing to auto site-wide - updated all font classes from -webkit-font-smoothing: antialiased to auto and -moz-osx-font-smoothing: grayscale to auto across Inter body font and all 14 logo font classes, making fonts thicker and more defined without browser anti-aliasing
+
+## 2024-12-25
+
+- enhanced font cross-browser compatibility for logo randomization - improved font definitions in public/assets/css/custom.css with proper iOS fallbacks for all font classes used in Logo component
+- added mobile-optimized font stacks for better iPhone support - font-comic now includes 'Chalkboard SE' and 'Marker Felt' iOS fallbacks, font-blackletter includes serif fallbacks since Lucida Blackletter isn't available on iOS
+- implemented font smoothing and performance optimizations - added -webkit-font-smoothing: antialiased and -moz-osx-font-smoothing: grayscale to all font classes for crisp rendering on retina displays
+- updated layout.tsx with mobile font optimization headers - added preconnect hints and proper viewport meta tags to improve font loading performance on mobile devices
+- fixed font fallback chains for system compatibility - helvetica-bold now includes -apple-system and San Francisco fonts for better iOS integration, times includes Liberation Serif for Linux compatibility
+- included all custom fonts from tachyons-ext.css - added tachyons-ext.css to layout.tsx to load @font-face declarations for Comic Sans MS, Lucida Blackletter, Brush Script, Algerian, Davida, Curlz, Relinquish, and Hobo Std fonts
+- expanded logo font randomization with 7 additional fonts - updated Logo component to include font-brush-script, font-algerian, font-davida, font-curlz, font-relinquish, and font-hobo for more diverse typographic variety
+- created fonts directory structure - added public/assets/fonts/ directory to house custom font files, ready for font file uploads when available
+- processed and optimized Times New Roman font files - renamed TTF files to follow proper naming convention (TimesNewRoman-Regular, TimesNewRoman-Bold, TimesNewRoman-Italic, TimesNewRoman-BoldItalic)
+- converted Times New Roman fonts to web formats - used fonttools to convert all 4 Times New Roman TTF variants to both WOFF and WOFF2 formats for optimal web performance and browser compatibility
+- added complete Times New Roman @font-face declarations - updated tachyons-ext.css with proper font-face rules for all Times New Roman variants (regular, bold, italic, bold-italic) with font-display: swap for performance
+- cleaned up font file structure - removed original TTF files after conversion, keeping only web-optimized WOFF/WOFF2 versions for production use
+- refined logo font selection to 5 core typefaces - limited randomization to Times New Roman Bold, Comic Sans Bold, Lucida Blackletter, Helvetica Bold, and Galapagos for more focused and cohesive brand expression
+- implemented Galapagos variant system - added logic to randomly select one of three Galapagos variants (galapagos-a, galapagos-ab, galapagos-abc) per refresh and apply consistently across all characters, preventing mixing of variants within single logo instance
+- added font-times-bold and font-comic-bold CSS classes - created dedicated bold versions of Times New Roman and Comic Sans with proper font-weight declarations and cross-browser fallbacks for improved typographic consistency
+- included Helvetica Bold in logo font rotation - added font-helvetica-bold to the randomization mix for additional typographic variety while maintaining focus on core brand typefaces
+- adjusted Times New Roman relative sizing in logo context - added font-size: 1.05em to font-times-bold class to make Times New Roman letters 5% larger than other fonts for better visual balance and prominence
+- optimized logo refresh performance to eliminate flickers - replaced setTimeout with requestAnimationFrame for smoother updates, prevented skeleton loader from showing on manual clicks (only first load), removed overlapping timing conflicts, and added CSS preloading to prevent flash of unstyled text
+- improved DOM update batching in text scaling - used dual requestAnimationFrame pattern to prevent layout thrashing and ensure smooth font size calculations without performance bottlenecks
+
 ## 2024-12-22
 
 - Implemented modular randomized Logo component for Next.js app - created src/components/Logo.tsx with interactive font randomization, color generation, and variant support for nav vs hero usage
@@ -58,6 +89,7 @@ This document tracks all significant changes to the studio log system in plain E
 - set up automated documentation system with Cursor integration - added system prompt to maintain running changelog of all code changes and architectural decisions
 - current system includes Next.js frontend, Python parsers, and Vercel Blob asset management - baseline established for tracking future modifications
 - **deployed studio log to production on vercel** - complete publishing workflow executed successfully: parsed 16 posts from obsidian, compressed 20 assets from 476MB to 47.4MB (90% reduction), fixed eslint errors, built production bundle, and deployed to https://studio-mn8e4689c-luismquerals-projects.vercel.app
+- **enhanced logo character rotation system** - implemented elegant three-tier probability system: 40% no rotation (straight), 50% subtle rotation (±3°), 10% bold rotation (±8°), added configurable ROTATION_CONFIG for easy adjustments, fixed useCallback dependency warning, creates balanced aesthetic with personality while maintaining readability
 
 ---
 

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <div className="mw7 center pa3 pa4-ns">
+    <div className="center pa3 pa4-ns">
       <header className="mb3 flex justify-center">
         <nav className="flex flex-wrap justify-center">
           <Link 
@@ -54,9 +54,9 @@ export default function HomePage() {
             </Link>
             {' '}who leads{' '}
             <Link href="#" className="link gray hover-near-black underline-hover">
-              generative design
+              generative design efforts
             </Link>
-            {' '}at The New York Times.
+            {' '}at <br/>The New York Times.
           </p>
         </div>
       </main>

@@ -154,9 +154,132 @@ pre:hover .copy-button {
   font-weight: 500;
 }
 
-/* Random Logo Font Utilities */
-.font-comic { font-family: 'Comic Sans MS', cursive; }
-.font-blackletter { font-family: 'Lucida Blackletter', serif; }
-.font-times { font-family: 'Times New Roman', serif; }
-.font-helvetica-bold { font-family: 'Helvetica Neue', Helvetica, sans-serif; font-weight: bold; }
-.font-galapagos { font-family: 'ABC Galapagos AB Grid Unlicensed Trial', sans-serif; }
+/* Body Font - Inter */
+.font-inter {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 400;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Random Logo Font Utilities - Enhanced for Cross-Browser Compatibility */
+
+/* Times New Roman Bold - using custom loaded font with optimized fallbacks */
+.font-times-bold { 
+  font-family: 'Times New Roman', 'Times', 'Liberation Serif', 'Georgia', serif;
+  font-weight: bold;
+  font-size: 1.05em; /* 5% larger than other fonts */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Comic Sans Bold - using custom loaded font with iOS fallbacks */
+.font-comic-bold { 
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Chalkboard', 'Marker Felt', 'Brush Script MT', cursive, sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Blackletter/Gothic - using custom loaded font with iOS fallbacks */
+.font-blackletter { 
+  font-family: 'Lucida Blackletter', 'Old English Text MT', 'Blackmoor LET', 'Times New Roman', 'Times', serif;
+  font-weight: 900;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Galapagos Variants - each variant used consistently per refresh */
+.galapagos-a { 
+  font-family: 'galapagos-a', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.galapagos-ab { 
+  font-family: 'galapagos-ab', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.galapagos-abc { 
+  font-family: 'galapagos-abc', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Legacy font classes for backward compatibility */
+.font-comic { 
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Chalkboard', 'Marker Felt', 'Brush Script MT', cursive, sans-serif;
+  font-weight: normal;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-times { 
+  font-family: 'Times New Roman', 'Times', 'Liberation Serif', 'Georgia', serif;
+  font-weight: normal;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-helvetica-bold { 
+  font-family: 'Helvetica Neue', 'Helvetica', -apple-system, 'BlinkMacSystemFont', 'San Francisco', 'Segoe UI', 'Arial', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-galapagos { 
+  font-family: 'galapagos-abc', 'galapagos-ab', 'galapagos-a', 'Impact', 'Franklin Gothic Bold', 'Arial Black', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+/* Additional custom fonts from tachyons-ext.css */
+.font-brush-script { 
+  font-family: 'Brush Script', 'Brush Script MT', cursive, sans-serif;
+  font-style: italic;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-algerian { 
+  font-family: 'Algerian', 'Impact', 'Franklin Gothic Bold', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-davida { 
+  font-family: 'Davida', 'Impact', 'Franklin Gothic Bold', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-curlz { 
+  font-family: 'Curlz', 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+  font-weight: normal;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-relinquish { 
+  font-family: 'Relinquish', 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: normal;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.font-hobo { 
+  font-family: 'Hobo Std', 'Cooper Black', 'Impact', sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
