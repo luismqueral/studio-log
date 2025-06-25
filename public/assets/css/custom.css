@@ -1,4 +1,64 @@
-/* Code Block Styling */
+/* Code Block Styling - Lightweight version */
+.code-block {
+  position: relative;
+  background-color: #282c34 !important;
+  color: #abb2bf !important;
+  border: 1px solid #3e4451 !important;
+  border-radius: 6px !important;
+  padding: 16px !important;
+  margin: 16px 0 !important;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  box-shadow: none !important;
+}
+
+/* Language-specific styling (lightweight syntax highlighting) */
+.language-javascript code,
+.language-typescript code,
+.language-jsx code,
+.language-tsx code {
+  color: #61dafb;
+}
+
+.language-python code {
+  color: #ffdf5d;
+}
+
+.language-css code {
+  color: #42a5f5;
+}
+
+.language-html code,
+.language-xml code {
+  color: #ff7043;
+}
+
+.language-json code {
+  color: #4fc3f7;
+}
+
+.language-bash code,
+.language-shell code {
+  color: #a5d6a7;
+}
+
+.language-sql code {
+  color: #ce93d8;
+}
+
+.language-yaml code {
+  color: #ffb74d;
+}
+
+/* Fallback for unknown languages */
+.language-text code {
+  color: #abb2bf;
+}
+
 pre {
   position: relative;
   background-color: #f6f8fa !important;

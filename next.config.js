@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable server component external packages optimization
-  serverExternalPackages: ['react-syntax-highlighter'],
   
   // Optimize images
   images: {
