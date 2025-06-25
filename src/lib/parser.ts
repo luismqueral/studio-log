@@ -1,23 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import { unified } from 'unified'
-import remarkParse from 'remark-parse'
-import remarkGfm from 'remark-gfm'
-import remarkRehype from 'remark-rehype'
-import rehypeRaw from 'rehype-raw'
-import rehypeStringify from 'rehype-stringify'
 import { parse } from 'date-fns'
 import { Post } from '@/types/post'
 import { siteConfig } from './config'
 
 export class StudioLogParser {
-  private processor = unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeStringify)
-
   async parseFile(filePath: string): Promise<Post[]> {
     if (!fs.existsSync(filePath)) {
       throw new Error(`Studio log file not found: ${filePath}`)
@@ -75,19 +62,16 @@ export class StudioLogParser {
       date = parsedDate || new Date()
     }
 
-    // Process content
+    // Process content (image paths only, no HTML conversion)
     let processedContent = bodyContent.trim()
     processedContent = this.processImagePaths(processedContent, path.dirname(sourceFile))
-    
-    // Convert to HTML
-    const htmlContent = await this.processor.process(processedContent)
 
     const post: Post = {
       title: frontmatter.title || 'Untitled',
       slug: frontmatter.slug || this.generateSlug(frontmatter.title || '', date),
       date,
       content: processedContent,
-      htmlContent: String(htmlContent),
+      htmlContent: processedContent, // Store markdown content, react-markdown will render it
       sourceFile,
       hasTitle: frontmatter.has_title !== 'False',
       urlPath: `${frontmatter.slug || this.generateSlug(frontmatter.title || '', date)}/`,
@@ -152,18 +136,15 @@ export class StudioLogParser {
     const contentLines = lines.slice(1)
     let content = contentLines.join('\n').trim()
     
-    // Process image paths before converting to HTML
+    // Process image paths (no HTML conversion)
     content = this.processImagePaths(content, path.dirname(sourceFile))
-    
-    // Convert to HTML
-    const htmlContent = await this.processor.process(content)
     
     return {
       title: displayTitle,
       slug,
       date,
       content,
-      htmlContent: String(htmlContent),
+      htmlContent: content, // Store markdown content, react-markdown will render it
       sourceFile,
       hasTitle,
       urlPath: `${slug}/`,

@@ -2,8 +2,6 @@
 
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
 import CodeBlock from './CodeBlock'
 
 interface MarkdownRendererProps {
@@ -15,8 +13,6 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
   return (
     <div className={className}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw]}
         components={{
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           code(props: any) {
